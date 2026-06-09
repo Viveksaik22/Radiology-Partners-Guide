@@ -1,0 +1,2732 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Radiology & Imaging Centers — Reference Guide</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:    #1a56a0;
+      --blue2:   #1245830;
+      --red:     #c0392b;
+      --border:  #d0d7de;
+      --bg:      #ffffff;
+      --bg2:     #f6f8fa;
+      --bg3:     #eef1f5;
+      --text:    #1f2328;
+      --muted:   #57606a;
+      --accent:  #0969da;
+      --tag-bg:  #ddf4ff;
+      --tag-c:   #0550ae;
+      --radius:  6px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 15px;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ─── TOP NAV BAR ─── */
+    .topbar {
+      background: var(--blue);
+      color: #fff;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      height: 52px;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+    }
+    .topbar-brand {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: #fff;
+      white-space: nowrap;
+    }
+    .topbar-links { display: flex; gap: 0.25rem; flex-wrap: wrap; }
+    .topbar-links a {
+      color: rgba(255,255,255,0.85);
+      font-size: 0.82rem;
+      padding: 0.3rem 0.65rem;
+      border-radius: 4px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .topbar-links a:hover { background: rgba(255,255,255,0.18); color: #fff; text-decoration: none; }
+
+    /* ─── HERO HEADER ─── */
+    .page-header {
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      padding: 2.5rem 2rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .page-header .breadcrumb {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+    .page-header .breadcrumb span { color: var(--border); margin: 0 0.3rem; }
+    .page-header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text);
+      border-bottom: 2px solid var(--blue);
+      padding-bottom: 0.5rem;
+      display: inline-block;
+      margin-bottom: 0.75rem;
+    }
+    .page-header .abstract {
+      max-width: 780px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      border-left: 3px solid var(--blue);
+      padding-left: 1rem;
+      margin-top: 0.75rem;
+    }
+
+    /* ─── LAYOUT ─── */
+    .layout {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 0;
+      max-width: 1200px;
+      margin: 0 auto;
+      align-items: start;
+    }
+
+    /* ─── SIDEBAR TOC ─── */
+    .sidebar {
+      position: sticky;
+      top: 52px;
+      max-height: calc(100vh - 52px);
+      overflow-y: auto;
+      border-right: 1px solid var(--border);
+      padding: 1.5rem 1rem 2rem;
+    }
+    .toc-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .toc-list { list-style: none; }
+    .toc-list li { margin-bottom: 0.15rem; }
+    .toc-list a {
+      font-size: 0.82rem;
+      color: var(--muted);
+      display: block;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      transition: background 0.12s, color 0.12s;
+    }
+    .toc-list a:hover { background: var(--bg3); color: var(--accent); text-decoration: none; }
+    .toc-list .toc-sub { padding-left: 0.9rem; }
+    .toc-num {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-right: 0.3rem;
+    }
+
+    /* ─── MAIN CONTENT ─── */
+    .main { padding: 2rem 2.5rem 4rem; min-width: 0; }
+
+    /* ─── GLOSSARY SECTION ─── */
+    .gloss-section { margin-bottom: 3rem; }
+    .gloss-section + .gloss-section { border-top: 1px solid var(--border); padding-top: 2.5rem; }
+
+    .section-num {
+      font-size: 0.72rem;
+      color: var(--muted);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .gloss-section h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0.2rem 0 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .gloss-section h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 1.25rem 0 0.4rem;
+    }
+    .gloss-section p {
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+      font-size: 0.925rem;
+    }
+    .gloss-section p:last-child { margin-bottom: 0; }
+
+    /* ─── STATS ROW ─── */
+    .stat-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin: 1.25rem 0;
+    }
+    .stat-pill {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 0.3rem 0.9rem;
+      font-size: 0.82rem;
+      color: var(--text);
+    }
+    .stat-pill strong { color: var(--blue); }
+
+    /* ─── WORKFLOW FLOW DIAGRAM ─── */
+    .flow-wrap {
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+    }
+    .flow {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      min-width: 820px;
+      margin: 1.25rem 0 1.75rem;
+    }
+    .flow-step {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+    .flow-step:not(:last-child)::after {
+      content: '▶';
+      position: absolute;
+      right: -10px;
+      top: 28px;
+      font-size: 1rem;
+      color: var(--blue);
+      z-index: 2;
+    }
+    .flow-box {
+      width: 100%;
+      padding: 0.65rem 0.5rem 0.5rem;
+      background: var(--bg3);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      text-align: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+      min-height: 64px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.2rem;
+      margin: 0 10px;
+    }
+    .flow-box.highlight { background: #ddf4ff; border-color: var(--accent); }
+    .flow-box .flow-icon { font-size: 1.3rem; }
+    .flow-box .flow-sys {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.1rem;
+    }
+    .flow-leg {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0.75rem 0 1rem;
+      font-size: 0.78rem;
+    }
+    .flow-leg span {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.2rem 0.55rem;
+      color: var(--muted);
+    }
+    .flow-leg span b { color: var(--text); }
+
+    /* sub-flow for data path */
+    .data-flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      align-items: center;
+      margin: 0.6rem 0 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .data-flow .df-node {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.2rem 0.55rem;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 0.75rem;
+    }
+    .data-flow .df-arrow { color: var(--accent); font-weight: 700; }
+
+    /* ─── DATA FLOW CARDS ─── */
+    .df-stage {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 1.1rem;
+      overflow: hidden;
+    }
+    .df-stage-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--bg3);
+      border-bottom: 1px solid var(--border);
+      padding: 0.55rem 0.9rem;
+    }
+    .df-stage-num {
+      background: var(--blue);
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.72rem;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .df-stage-title {
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+    .df-stage-sys {
+      margin-left: auto;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.15rem 0.5rem;
+    }
+    .df-fields {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 0;
+    }
+    .df-field {
+      padding: 0.45rem 0.9rem;
+      border-bottom: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      font-size: 0.82rem;
+    }
+    .df-field:last-child { border-right: none; }
+    .df-field .df-key {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 0.1rem;
+    }
+    .df-field .df-val {
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      color: var(--text);
+      font-weight: 600;
+      word-break: break-all;
+    }
+    .df-field .df-val.hl { color: var(--accent); }
+    .df-field .df-val.warn { color: #cf222e; }
+    .df-field .df-val.ok { color: #1a7f37; }
+    .df-note {
+      padding: 0.45rem 0.9rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      background: #fffef0;
+      border-top: 1px solid #f0e68c;
+      grid-column: 1 / -1;
+    }
+
+    /* ─── GLOSSARY ENTRY TABLE (imaging types / professionals) ─── */
+    .gloss-table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; font-size: 0.9rem; }
+    .gloss-table th {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      padding: 0.5rem 0.75rem;
+      text-align: left;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .gloss-table td {
+      border: 1px solid var(--border);
+      padding: 0.65rem 0.75rem;
+      vertical-align: top;
+      color: var(--text);
+    }
+    .gloss-table tr:nth-child(even) td { background: var(--bg2); }
+    .gloss-table tr:hover td { background: #fffbdd; }
+    .gloss-table .term-col {
+      font-weight: 700;
+      white-space: nowrap;
+      width: 130px;
+    }
+    .gloss-table .abbr-col {
+      font-family: 'Courier New', monospace;
+      font-weight: 700;
+      font-size: 0.85rem;
+      white-space: nowrap;
+      width: 90px;
+    }
+
+    /* badge inside table */
+    .badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      font-family: 'Courier New', monospace;
+      background: var(--blue);
+      color: #fff;
+      border-radius: 4px;
+      padding: 0.15rem 0.45rem;
+      letter-spacing: 0.03em;
+    }
+    .badge-green  { background: #1a7f37; }
+    .badge-purple { background: #6639ba; }
+    .badge-red    { background: #cf222e; }
+    .badge-teal   { background: #0969a2; }
+
+    /* inline tag */
+    .tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      background: var(--tag-bg);
+      color: var(--tag-c);
+      border: 1px solid #b6daf2;
+      border-radius: 20px;
+      padding: 0.1rem 0.5rem;
+      margin: 0.1rem 0.1rem 0 0;
+    }
+
+    /* ─── SERVICES TWO-COL ─── */
+    .services-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 0.75rem;
+    }
+    .service-group h3 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 0.5rem;
+      padding-bottom: 0.35rem;
+      border-bottom: 2px solid var(--blue);
+    }
+    .service-group ul { list-style: none; }
+    .service-group li {
+      font-size: 0.875rem;
+      color: var(--muted);
+      padding: 0.35rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    .service-group li::before { content: '›'; color: var(--blue); font-weight: 700; flex-shrink: 0; }
+
+    /* ─── NUMBERED STEPS ─── */
+    .steps-list { list-style: none; counter-reset: steps; margin-top: 0.5rem; }
+    .steps-list li {
+      counter-increment: steps;
+      display: flex;
+      gap: 1rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: flex-start;
+    }
+    .steps-list li::before {
+      content: counter(steps);
+      background: var(--blue);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.78rem;
+      min-width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+    .steps-list li strong { display: block; font-size: 0.9rem; color: var(--text); margin-bottom: 0.15rem; }
+    .steps-list li span { font-size: 0.865rem; color: var(--muted); }
+
+    /* ─── WHEN TO SEE ─── */
+    .reasons-list { list-style: none; margin-top: 0.5rem; }
+    .reasons-list li {
+      display: flex;
+      gap: 0.75rem;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: flex-start;
+    }
+    .reasons-list .icon { font-size: 1.15rem; flex-shrink: 0; margin-top: 0.05rem; }
+    .reasons-list strong { display: block; font-size: 0.9rem; color: var(--text); }
+    .reasons-list span { font-size: 0.865rem; color: var(--muted); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--bg3);
+      border-top: 1px solid var(--border);
+      padding: 1.75rem 2rem;
+      text-align: center;
+    }
+    footer p { font-size: 0.8rem; color: var(--muted); max-width: 680px; margin: 0 auto 0.35rem; }
+    footer .disclaimer { font-size: 0.73rem; color: #aaa; margin-top: 0.75rem; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 780px) {
+      .layout { grid-template-columns: 1fr; }
+      .sidebar { position: static; max-height: none; border-right: none; border-bottom: 1px solid var(--border); }
+      .services-cols { grid-template-columns: 1fr; }
+      .topbar-links { display: none; }
+      .gloss-table .abbr-col, .gloss-table .term-col { width: auto; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="topbar">
+  <div class="topbar-brand">&#9685; RadiologyInfo Reference</div>
+  <div class="topbar-links">
+    <a href="#radiology">Overview</a>
+    <a href="#imaging">Imaging Types</a>
+    <a href="#services">Services</a>
+    <a href="#prepare">Preparation</a>
+    <a href="#professionals">RAD Professionals</a>
+    <a href="#when">When to Go</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="breadcrumb">Medicine <span>›</span> Radiology <span>›</span> Imaging Centers</div>
+  <h1>Radiology &amp; Imaging Centers</h1>
+  <div class="abstract">
+    A comprehensive reference guide to medical imaging — covering modalities, center services,
+    radiology credentials, patient preparation, and clinical referral indications.
+    For informational purposes only; not a substitute for medical advice.
+  </div>
+</div>
+
+<!-- LAYOUT -->
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list">
+      <li><a href="#radiology"><span class="toc-num">1</span> What Is Radiology?</a></li>
+      <li><a href="#dataflow"><span class="toc-num">2</span> Technical Data Flow Example</a>
+        <ul class="toc-list">
+          <li><a class="toc-sub" href="#dataflow">EHR → RIS → PACS</a></li>
+          <li><a class="toc-sub" href="#dataflow">Charge ID &amp; RCM</a></li>
+          <li><a class="toc-sub" href="#dataflow">Charge Reversal</a></li>
+        </ul>
+      </li>
+      <li><a href="#imaging"><span class="toc-num">3</span> Types of Imaging</a>
+        <ul class="toc-list">
+          <li><a class="toc-sub" href="#imaging">Modality Table</a></li>
+        </ul>
+      </li>
+      <li><a href="#rvu"><span class="toc-num">4</span> Components of RVU</a>
+        <ul class="toc-list">
+          <li><a class="toc-sub" href="#rvu">Work RVU</a></li>
+          <li><a class="toc-sub" href="#rvu">Practice Expense RVU</a></li>
+          <li><a class="toc-sub" href="#rvu">Malpractice RVU</a></li>
+        </ul>
+      </li>
+      <li><a href="#workflow"><span class="toc-num">5</span> Patient &amp; System Workflow</a>
+        <ul class="toc-list">
+          <li><a class="toc-sub" href="#workflow">EHR</a></li>
+          <li><a class="toc-sub" href="#workflow">RIS</a></li>
+          <li><a class="toc-sub" href="#workflow">PACS</a></li>
+          <li><a class="toc-sub" href="#workflow">Billing / RCM</a></li>
+        </ul>
+      </li>
+      <li><a href="#payers"><span class="toc-num">6</span> Medicare, Medicaid &amp; Insurance</a>
+        <ul class="toc-list">
+          <li><a class="toc-sub" href="#payers">Medicare</a></li>
+          <li><a class="toc-sub" href="#payers">Medicaid</a></li>
+          <li><a class="toc-sub" href="#payers">Private Insurance</a></li>
+          <li><a class="toc-sub" href="#payers">Payment Comparison</a></li>
+        </ul>
+      </li>
+      <li><a href="#services"><span class="toc-num">7</span> Services Offered</a></li>
+      <li><a href="#prepare"><span class="toc-num">8</span> How to Prepare</a></li>
+      <li><a href="#professionals"><span class="toc-num">9</span> RAD Professionals</a>
+        <ul class="toc-list">
+          <li><a class="toc-sub" href="#professionals">Physicians</a></li>
+          <li><a class="toc-sub" href="#professionals">Technologists</a></li>
+          <li><a class="toc-sub" href="#professionals">Support Roles</a></li>
+        </ul>
+      </li>
+      <li><a href="#rp"><span class="toc-num">10</span> Radiology Partners</a>
+        <ul class="toc-list">
+          <li><a class="toc-sub" href="#rp">Business Model</a></li>
+          <li><a class="toc-sub" href="#rp">Sites Served</a></li>
+          <li><a class="toc-sub" href="#rp">Revenue Model</a></li>
+          <li><a class="toc-sub" href="#rp">Mosaic Platform</a></li>
+          <li><a class="toc-sub" href="#competitors">Competitors</a></li>
+          <li><a class="toc-sub" href="#competitors">Coverage Map</a></li>
+        </ul>
+      </li>
+      <li><a href="#when"><span class="toc-num">11</span> When to Seek Imaging</a></li>
+      <li><a href="#urgency"><span class="toc-num">12</span> Imaging Priority &amp; Urgency Levels</a>
+        <ul class="toc-list">
+          <li><a class="toc-sub" href="#urgency">STAT / Emergent</a></li>
+          <li><a class="toc-sub" href="#urgency">Urgent</a></li>
+          <li><a class="toc-sub" href="#urgency">Routine</a></li>
+          <li><a class="toc-sub" href="#urgency">Elective / Scheduled</a></li>
+          <li><a class="toc-sub" href="#urgency">RIS Priority Codes</a></li>
+        </ul>
+      </li>
+    </ul>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- 1. WHAT IS RADIOLOGY -->
+    <div class="gloss-section" id="radiology">
+      <div class="section-num">Section 1</div>
+      <h2>What Is Radiology?</h2>
+      <p>
+        Radiology is a branch of medicine that uses imaging technology to diagnose and treat disease.
+        Radiologists — physicians who specialise in interpreting medical images — work behind the scenes
+        in virtually every clinical pathway, from emergency trauma to routine cancer screening.
+      </p>
+      <p>
+        Modern radiology spans two broad domains: <strong>diagnostic radiology</strong> (using images to
+        identify disease) and <strong>interventional radiology</strong> (using image guidance to perform
+        minimally invasive procedures). Both rely on a shared technical infrastructure of modalities,
+        networks, and software described throughout this reference.
+      </p>
+    </div>
+
+    <!-- 2. TECHNICAL DATA FLOW -->
+    <div class="gloss-section" id="dataflow">
+      <div class="section-num">Section 2</div>
+      <h2>Technical Data Flow — End-to-End Worked Example</h2>
+      <p>
+        Example exam: <strong>CT Abdomen &amp; Pelvis with Contrast (CPT 74177)</strong><br>
+        Patient: <strong>Jane Doe</strong> · DOB 1958-03-12 · MRN 0042891<br>
+        Ordering physician: Dr. R. Smith, NPI 1234567890 · Indication: Abdominal pain, unspecified (ICD-10 <strong>R10.9</strong>)<br>
+        Facility: Metro Imaging Center · Site ID <code>FAC-0082</code> · PACS node <code>AE: METRO_CT1</code>
+      </p>
+
+      <!-- STAGE 1 -->
+      <div class="df-stage">
+        <div class="df-stage-header">
+          <div class="df-stage-num">1</div>
+          <div class="df-stage-title">Physician places order in EHR</div>
+          <div class="df-stage-sys">EHR → HL7 ORM</div>
+        </div>
+        <div class="df-fields">
+          <div class="df-field"><span class="df-key">patient_mrn</span><span class="df-val hl">0042891</span></div>
+          <div class="df-field"><span class="df-key">patient_name</span><span class="df-val">DOE^JANE^^</span></div>
+          <div class="df-field"><span class="df-key">dob</span><span class="df-val">19580312</span></div>
+          <div class="df-field"><span class="df-key">order_id</span><span class="df-val hl">ORD-2024-089341</span></div>
+          <div class="df-field"><span class="df-key">ordering_npi</span><span class="df-val">1234567890</span></div>
+          <div class="df-field"><span class="df-key">cpt_ordered</span><span class="df-val">74177</span></div>
+          <div class="df-field"><span class="df-key">icd10_dx</span><span class="df-val">R10.9</span></div>
+          <div class="df-field"><span class="df-key">priority</span><span class="df-val">ROUTINE</span></div>
+          <div class="df-field"><span class="df-key">insurance_id</span><span class="df-val">BCBS-IL-00872341</span></div>
+          <div class="df-field"><span class="df-key">hl7_msg_type</span><span class="df-val">ORM^O01</span></div>
+          <div class="df-field"><span class="df-key">order_status</span><span class="df-val ok">ORDERED</span></div>
+          <div class="df-field"><span class="df-key">order_datetime</span><span class="df-val">20240409 09:14:33</span></div>
+          <div class="df-note">&#9432; EHR transmits an HL7 v2.x ORM^O01 message to the RIS via TCP/IP MLLP connection. The order_id is the EHR's internal key; the RIS will generate its own accession number upon receipt.</div>
+        </div>
+      </div>
+
+      <!-- STAGE 2 -->
+      <div class="df-stage">
+        <div class="df-stage-header">
+          <div class="df-stage-num">2</div>
+          <div class="df-stage-title">RIS receives order → generates Accession Number &amp; Worklist</div>
+          <div class="df-stage-sys">RIS → DICOM MWL</div>
+        </div>
+        <div class="df-fields">
+          <div class="df-field"><span class="df-key">accession_number</span><span class="df-val hl">ACC-20240409-004821</span></div>
+          <div class="df-field"><span class="df-key">ris_order_id</span><span class="df-val">ORD-2024-089341</span></div>
+          <div class="df-field"><span class="df-key">patient_mrn</span><span class="df-val">0042891</span></div>
+          <div class="df-field"><span class="df-key">scheduled_datetime</span><span class="df-val">20240409 11:00:00</span></div>
+          <div class="df-field"><span class="df-key">modality</span><span class="df-val">CT</span></div>
+          <div class="df-field"><span class="df-key">protocol</span><span class="df-val">CT ABD PELVIS W CONTRAST</span></div>
+          <div class="df-field"><span class="df-key">station_ae_title</span><span class="df-val">METRO_CT1</span></div>
+          <div class="df-field"><span class="df-key">exam_room</span><span class="df-val">CT-ROOM-2</span></div>
+          <div class="df-field"><span class="df-key">tech_assigned</span><span class="df-val">JSMITH_RT</span></div>
+          <div class="df-field"><span class="df-key">worklist_status</span><span class="df-val ok">SCHEDULED</span></div>
+          <div class="df-field"><span class="df-key">mwl_query_type</span><span class="df-val">C-FIND (DICOM MWL)</span></div>
+          <div class="df-field"><span class="df-key">prep_instructions_sent</span><span class="df-val ok">YES — NPO 4hr, contrast consent</span></div>
+          <div class="df-note">&#9432; The accession number is the RIS's primary key linking the order to all downstream systems (PACS, billing). It is embedded in the DICOM worklist and must match across all images produced in this exam.</div>
+        </div>
+      </div>
+
+      <!-- STAGE 3 -->
+      <div class="df-stage">
+        <div class="df-stage-header">
+          <div class="df-stage-num">3</div>
+          <div class="df-stage-title">Technologist performs scan — modality acquires images</div>
+          <div class="df-stage-sys">CT Scanner → DICOM Store → PACS</div>
+        </div>
+        <div class="df-fields">
+          <div class="df-field"><span class="df-key">accession_number</span><span class="df-val hl">ACC-20240409-004821</span></div>
+          <div class="df-field"><span class="df-key">study_instance_uid</span><span class="df-val hl">1.2.840.10008.5.1.4.1.1.2.1.20240409.114521.004821</span></div>
+          <div class="df-field"><span class="df-key">series_instance_uid</span><span class="df-val">1.2.840.10008.5.1.4.1.1.2.1.20240409.114521.004821.1</span></div>
+          <div class="df-field"><span class="df-key">sop_instance_uid</span><span class="df-val">1.2.840.10008.5.1.4.1.1.2.20240409.114522.001</span></div>
+          <div class="df-field"><span class="df-key">sop_class_uid</span><span class="df-val">1.2.840.10008.5.1.4.1.1.2 (CT Image Storage)</span></div>
+          <div class="df-field"><span class="df-key">num_images_acquired</span><span class="df-val">382</span></div>
+          <div class="df-field"><span class="df-key">num_series</span><span class="df-val">4</span></div>
+          <div class="df-field"><span class="df-key">kvp</span><span class="df-val">120 kVp</span></div>
+          <div class="df-field"><span class="df-key">ctdivol</span><span class="df-val">14.2 mGy</span></div>
+          <div class="df-field"><span class="df-key">dlp</span><span class="df-val">568 mGy·cm</span></div>
+          <div class="df-field"><span class="df-key">contrast_agent</span><span class="df-val">Omnipaque 350 — 100mL IV</span></div>
+          <div class="df-field"><span class="df-key">acquisition_datetime</span><span class="df-val">20240409 11:45:22</span></div>
+          <div class="df-field"><span class="df-key">dicom_store_status</span><span class="df-val ok">C-STORE SUCCESS → PACS</span></div>
+          <div class="df-field"><span class="df-key">mpps_status</span><span class="df-val ok">COMPLETED</span></div>
+          <div class="df-note">&#9432; The Study Instance UID is globally unique (assigned by the modality). Every DICOM image (SOP Instance) in this exam shares the same Study UID and accession number, ensuring correct grouping in PACS. MPPS (Modality Performed Procedure Step) notifies the RIS that the exam is complete.</div>
+        </div>
+      </div>
+
+      <!-- STAGE 4 -->
+      <div class="df-stage">
+        <div class="df-stage-header">
+          <div class="df-stage-num">4</div>
+          <div class="df-stage-title">PACS archives images — appears on radiologist worklist</div>
+          <div class="df-stage-sys">PACS → Diagnostic Viewer</div>
+        </div>
+        <div class="df-fields">
+          <div class="df-field"><span class="df-key">accession_number</span><span class="df-val hl">ACC-20240409-004821</span></div>
+          <div class="df-field"><span class="df-key">study_instance_uid</span><span class="df-val hl">1.2.840.10008.5.1.4.1.1.2.1.20240409.114521.004821</span></div>
+          <div class="df-field"><span class="df-key">pacs_study_id</span><span class="df-val">PACS-2024-038821</span></div>
+          <div class="df-field"><span class="df-key">archive_location</span><span class="df-val">TIER1-SAN / pool-ct / 20240409</span></div>
+          <div class="df-field"><span class="df-key">images_stored</span><span class="df-val ok">382 / 382</span></div>
+          <div class="df-field"><span class="df-key">worklist_priority</span><span class="df-val">ROUTINE</span></div>
+          <div class="df-field"><span class="df-key">assigned_radiologist</span><span class="df-val">DR_PATEL_MD</span></div>
+          <div class="df-field"><span class="df-key">prior_studies_linked</span><span class="df-val">2 (CT ABD 20230115, CT ABD 20220804)</span></div>
+          <div class="df-field"><span class="df-key">ai_flag</span><span class="df-val ok">No critical findings flagged</span></div>
+          <div class="df-field"><span class="df-key">pacs_receive_datetime</span><span class="df-val">20240409 11:52:08</span></div>
+          <div class="df-field"><span class="df-key">study_status</span><span class="df-val ok">AVAILABLE FOR READ</span></div>
+          <div class="df-note">&#9432; PACS links prior exams via MRN for side-by-side comparison. The AI engine scans for critical findings; if flagged (e.g., PE, aortic dissection), it escalates priority to STAT on the worklist automatically.</div>
+        </div>
+      </div>
+
+      <!-- STAGE 5 -->
+      <div class="df-stage">
+        <div class="df-stage-header">
+          <div class="df-stage-num">5</div>
+          <div class="df-stage-title">Radiologist interprets, dictates &amp; signs report</div>
+          <div class="df-stage-sys">RIS → HL7 ORU → EHR</div>
+        </div>
+        <div class="df-fields">
+          <div class="df-field"><span class="df-key">accession_number</span><span class="df-val hl">ACC-20240409-004821</span></div>
+          <div class="df-field"><span class="df-key">report_id</span><span class="df-val hl">RPT-20240409-004821-01</span></div>
+          <div class="df-field"><span class="df-key">radiologist_npi</span><span class="df-val">9876543210</span></div>
+          <div class="df-field"><span class="df-key">dictation_engine</span><span class="df-val">PowerScribe One v5.2</span></div>
+          <div class="df-field"><span class="df-key">read_start_datetime</span><span class="df-val">20240409 13:10:44</span></div>
+          <div class="df-field"><span class="df-key">sign_datetime</span><span class="df-val">20240409 13:28:17</span></div>
+          <div class="df-field"><span class="df-key">turnaround_minutes</span><span class="df-val ok">103 min (within SLA)</span></div>
+          <div class="df-field"><span class="df-key">report_status</span><span class="df-val ok">FINAL SIGNED</span></div>
+          <div class="df-field"><span class="df-key">critical_finding</span><span class="df-val">NONE</span></div>
+          <div class="df-field"><span class="df-key">hl7_msg_type</span><span class="df-val">ORU^R01</span></div>
+          <div class="df-field"><span class="df-key">report_sent_to_ehr</span><span class="df-val ok">YES — 20240409 13:28:19</span></div>
+          <div class="df-field"><span class="df-key">charge_trigger</span><span class="df-val ok">AUTO — on report sign</span></div>
+          <div class="df-note">&#9432; Report signing in RIS automatically fires a charge trigger event. The RIS maps the exam to the billable CPT code (74177) and ICD-10 (R10.9), creates a charge record, and pushes it to the billing system.</div>
+        </div>
+      </div>
+
+      <!-- STAGE 6 -->
+      <div class="df-stage">
+        <div class="df-stage-header">
+          <div class="df-stage-num">6</div>
+          <div class="df-stage-title">Charge capture &amp; claim creation (RCM)</div>
+          <div class="df-stage-sys">Billing System → 837P EDI</div>
+        </div>
+        <div class="df-fields">
+          <div class="df-field"><span class="df-key">charge_id</span><span class="df-val hl">CHG-20240409-082741</span></div>
+          <div class="df-field"><span class="df-key">accession_number</span><span class="df-val hl">ACC-20240409-004821</span></div>
+          <div class="df-field"><span class="df-key">cpt_code</span><span class="df-val">74177</span></div>
+          <div class="df-field"><span class="df-key">modifier</span><span class="df-val">–26 (Professional Component)</span></div>
+          <div class="df-field"><span class="df-key">icd10_dx</span><span class="df-val">R10.9</span></div>
+          <div class="df-field"><span class="df-key">billing_npi</span><span class="df-val">9876543210</span></div>
+          <div class="df-field"><span class="df-key">service_date</span><span class="df-val">20240409</span></div>
+          <div class="df-field"><span class="df-key">billed_amount</span><span class="df-val">$420.00 (chargemaster)</span></div>
+          <div class="df-field"><span class="df-key">expected_reimbursement</span><span class="df-val">$158.00 (BCBS contracted)</span></div>
+          <div class="df-field"><span class="df-key">total_rvu</span><span class="df-val">4.82 RVU</span></div>
+          <div class="df-field"><span class="df-key">claim_id</span><span class="df-val hl">CLM-BCBS-2024-441892</span></div>
+          <div class="df-field"><span class="df-key">edi_transaction</span><span class="df-val">837P</span></div>
+          <div class="df-field"><span class="df-key">claim_status</span><span class="df-val ok">SUBMITTED — 20240409 20:01:00</span></div>
+          <div class="df-field"><span class="df-key">charge_status</span><span class="df-val ok">PENDING ADJUDICATION</span></div>
+          <div class="df-note">&#9432; The charge_id is the billing system's internal key. The claim_id is assigned after the 837P batch is transmitted to the clearinghouse. The chargemaster amount ($420) is almost never collected at list price — the contracted rate ($158) is the actual expected payment.</div>
+        </div>
+      </div>
+
+      <!-- STAGE 7 -->
+      <div class="df-stage">
+        <div class="df-stage-header">
+          <div class="df-stage-num">7</div>
+          <div class="df-stage-title">Payer adjudicates claim — ERA / payment posted</div>
+          <div class="df-stage-sys">Payer → 835 ERA → Billing</div>
+        </div>
+        <div class="df-fields">
+          <div class="df-field"><span class="df-key">claim_id</span><span class="df-val hl">CLM-BCBS-2024-441892</span></div>
+          <div class="df-field"><span class="df-key">charge_id</span><span class="df-val hl">CHG-20240409-082741</span></div>
+          <div class="df-field"><span class="df-key">payer_claim_num</span><span class="df-val">BCBS2024-IL-9912344</span></div>
+          <div class="df-field"><span class="df-key">adjudication_date</span><span class="df-val">20240415</span></div>
+          <div class="df-field"><span class="df-key">allowed_amount</span><span class="df-val">$158.00</span></div>
+          <div class="df-field"><span class="df-key">plan_paid</span><span class="df-val ok">$126.40 (80%)</span></div>
+          <div class="df-field"><span class="df-key">patient_coinsurance</span><span class="df-val">$31.60 (20%)</span></div>
+          <div class="df-field"><span class="df-key">contractual_adjustment</span><span class="df-val">$262.00 (write-off)</span></div>
+          <div class="df-field"><span class="df-key">era_transaction</span><span class="df-val">835 ERA</span></div>
+          <div class="df-field"><span class="df-key">payment_method</span><span class="df-val">EFT — ACH transfer</span></div>
+          <div class="df-field"><span class="df-key">claim_status</span><span class="df-val ok">PAID</span></div>
+          <div class="df-field"><span class="df-key">charge_status</span><span class="df-val ok">CLOSED</span></div>
+          <div class="df-note">&#9492; Patient receives a separate bill for $31.60 coinsurance. The $262.00 contractual adjustment is a mandatory write-off per the BCBS contract — it cannot be balance-billed to the patient.</div>
+        </div>
+      </div>
+
+      <!-- STAGE 8 — DENIAL -->
+      <div class="df-stage">
+        <div class="df-stage-header">
+          <div class="df-stage-num">8</div>
+          <div class="df-stage-title">Alternate path — Claim Denial &amp; Resubmission</div>
+          <div class="df-stage-sys">Payer → 835 (Denial) → RCM Work Queue</div>
+        </div>
+        <div class="df-fields">
+          <div class="df-field"><span class="df-key">claim_id</span><span class="df-val hl">CLM-BCBS-2024-441892</span></div>
+          <div class="df-field"><span class="df-key">denial_code</span><span class="df-val warn">CO-4</span></div>
+          <div class="df-field"><span class="df-key">denial_reason</span><span class="df-val warn">Service requires prior authorization</span></div>
+          <div class="df-field"><span class="df-key">carc_code</span><span class="df-val warn">CARC 4</span></div>
+          <div class="df-field"><span class="df-key">rarc_code</span><span class="df-val warn">N130</span></div>
+          <div class="df-field"><span class="df-key">claim_status</span><span class="df-val warn">DENIED</span></div>
+          <div class="df-field"><span class="df-key">denial_date</span><span class="df-val">20240415</span></div>
+          <div class="df-field"><span class="df-key">work_queue</span><span class="df-val warn">DENIAL-MGMT-AUTH</span></div>
+          <div class="df-field"><span class="df-key">appeal_submitted</span><span class="df-val">YES — 20240418</span></div>
+          <div class="df-field"><span class="df-key">auth_number_obtained</span><span class="df-val ok">AUTH-BCBS-2024-774421</span></div>
+          <div class="df-field"><span class="df-key">corrected_claim_id</span><span class="df-val hl">CLM-BCBS-2024-441892-C1</span></div>
+          <div class="df-field"><span class="df-key">resubmission_date</span><span class="df-val">20240419</span></div>
+          <div class="df-field"><span class="df-key">final_status</span><span class="df-val ok">PAID on resubmission</span></div>
+          <div class="df-note">&#9432; CO-4 (CARC 4) = "The service requires a referral or prior authorization." RCM team retroactively obtains auth, appends auth number to the corrected claim (CLM type 7 — replacement), and resubmits. The original claim_id is retained with a "-C1" suffix to track the correction chain.</div>
+        </div>
+      </div>
+
+      <!-- STAGE 9 — CHARGE REVERSAL -->
+      <div class="df-stage">
+        <div class="df-stage-header">
+          <div class="df-stage-num">9</div>
+          <div class="df-stage-title">Charge Reversal — when &amp; how it works</div>
+          <div class="df-stage-sys">RIS / Billing → Void Transaction</div>
+        </div>
+        <div class="df-fields">
+          <div class="df-field"><span class="df-key">original_charge_id</span><span class="df-val hl">CHG-20240409-082741</span></div>
+          <div class="df-field"><span class="df-key">reversal_charge_id</span><span class="df-val warn">CHG-REV-20240409-082741</span></div>
+          <div class="df-field"><span class="df-key">reversal_reason</span><span class="df-val warn">Duplicate charge — exam billed twice</span></div>
+          <div class="df-field"><span class="df-key">reversal_triggered_by</span><span class="df-val">BILLING_QA_TEAM</span></div>
+          <div class="df-field"><span class="df-key">reversal_datetime</span><span class="df-val">20240410 08:45:00</span></div>
+          <div class="df-field"><span class="df-key">reversal_amount</span><span class="df-val warn">–$420.00</span></div>
+          <div class="df-field"><span class="df-key">claim_void_type</span><span class="df-val warn">837P CLM type 8 (Void)</span></div>
+          <div class="df-field"><span class="df-key">era_reversal_code</span><span class="df-val warn">PR-96 / CO-97</span></div>
+          <div class="df-field"><span class="df-key">audit_trail_id</span><span class="df-val">AUD-20240410-001122</span></div>
+          <div class="df-field"><span class="df-key">charge_status</span><span class="df-val warn">REVERSED</span></div>
+          <div class="df-field"><span class="df-key">new_charge_created</span><span class="df-val ok">YES — CHG-20240410-082999 (corrected)</span></div>
+          <div class="df-field"><span class="df-key">gl_impact</span><span class="df-val warn">Debit revenue –$158.00 / Credit A/R –$158.00</span></div>
+          <div class="df-note">&#9432; A charge reversal voids the original charge record and creates an offsetting negative entry. If a claim was already submitted, an 837P void (CLM08 = 8) is sent to the payer. If payment was already received, the provider must return the overpayment via refund check or offset against future payments. All reversals generate an immutable audit trail entry.</div>
+        </div>
+      </div>
+
+      <!-- KEY IDENTIFIERS TABLE -->
+      <h3>Key Technical Identifiers — Quick Reference</h3>
+      <table class="gloss-table" style="margin-top:0.5rem;">
+        <thead>
+          <tr>
+            <th style="width:160px">Identifier</th>
+            <th style="width:160px">System Owner</th>
+            <th>Purpose &amp; Scope</th>
+            <th style="width:220px">Example Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>MRN</strong></td>
+            <td>EHR / Hospital</td>
+            <td>Uniquely identifies the patient within a facility or health system.</td>
+            <td><code>0042891</code></td>
+          </tr>
+          <tr>
+            <td><strong>Order ID</strong></td>
+            <td>EHR</td>
+            <td>EHR's internal key for the imaging order (Placer Order Number in HL7 ORM).</td>
+            <td><code>ORD-2024-089341</code></td>
+          </tr>
+          <tr>
+            <td><strong>Accession Number</strong></td>
+            <td>RIS</td>
+            <td>Primary cross-system key linking order → images → charges. Must be unique in RIS.</td>
+            <td><code>ACC-20240409-004821</code></td>
+          </tr>
+          <tr>
+            <td><strong>Study Instance UID</strong></td>
+            <td>Modality</td>
+            <td>Globally unique DICOM identifier grouping all series/images in one exam.</td>
+            <td><code>1.2.840.10008…004821</code></td>
+          </tr>
+          <tr>
+            <td><strong>Series Instance UID</strong></td>
+            <td>Modality</td>
+            <td>Unique DICOM key per acquisition series within a study.</td>
+            <td><code>…004821.1</code></td>
+          </tr>
+          <tr>
+            <td><strong>SOP Instance UID</strong></td>
+            <td>Modality</td>
+            <td>Unique DICOM key per individual image slice (382 UIDs for a 382-image CT).</td>
+            <td><code>…114522.001</code></td>
+          </tr>
+          <tr>
+            <td><strong>Report ID</strong></td>
+            <td>RIS</td>
+            <td>Unique key for the signed radiology report; returned to EHR via HL7 ORU.</td>
+            <td><code>RPT-20240409-004821-01</code></td>
+          </tr>
+          <tr>
+            <td><strong>Charge ID</strong></td>
+            <td>Billing / RCM</td>
+            <td>Billing system key for the charge record; auto-created on report sign.</td>
+            <td><code>CHG-20240409-082741</code></td>
+          </tr>
+          <tr>
+            <td><strong>Claim ID</strong></td>
+            <td>Billing / Clearinghouse</td>
+            <td>Assigned after 837P transmission; tracks the claim through payer adjudication.</td>
+            <td><code>CLM-BCBS-2024-441892</code></td>
+          </tr>
+          <tr>
+            <td><strong>Reversal Charge ID</strong></td>
+            <td>Billing / RCM</td>
+            <td>Offsetting negative charge entry created when a charge is voided.</td>
+            <td><code>CHG-REV-20240409-082741</code></td>
+          </tr>
+          <tr>
+            <td><strong>Auth Number</strong></td>
+            <td>Payer</td>
+            <td>Prior authorization number; absence causes CO-4 denial.</td>
+            <td><code>AUTH-BCBS-2024-774421</code></td>
+          </tr>
+          <tr>
+            <td><strong>Payer Claim Number</strong></td>
+            <td>Insurance Payer</td>
+            <td>Payer's internal claim ID returned on 835 ERA; used for appeals and refunds.</td>
+            <td><code>BCBS2024-IL-9912344</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 3. TYPES OF IMAGING -->
+    <div class="gloss-section" id="imaging">
+      <div class="section-num">Section 3</div>
+      <h2>Types of Medical Imaging</h2>
+      <p>
+        Each modality uses different physical principles and is suited to specific clinical questions.
+        The referring physician selects the most appropriate study based on symptoms, anatomy, and clinical goals.
+      </p>
+
+      <table class="gloss-table">
+        <thead>
+          <tr>
+            <th style="width:90px">Abbrev.</th>
+            <th style="width:190px">Full Name</th>
+            <th>Description</th>
+            <th style="width:110px">Tags</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="abbr-col">MRI</td>
+            <td class="term-col">Magnetic Resonance Imaging</td>
+            <td>Uses magnetic fields and radio waves to image soft tissues, brain, spine, and joints. No ionizing radiation.</td>
+            <td><span class="tag">No radiation</span></td>
+          </tr>
+          <tr>
+            <td class="abbr-col">CT</td>
+            <td class="term-col">Computed Tomography</td>
+            <td>X-ray cross-sectional "slices" of the body. Fast and detailed; ideal for trauma, chest, and abdomen.</td>
+            <td><span class="tag">Fast</span> <span class="tag">Detailed</span></td>
+          </tr>
+          <tr>
+            <td class="abbr-col">XR</td>
+            <td class="term-col">X-Ray (Radiography)</td>
+            <td>Low-dose radiation to visualize bone and detect fractures, pneumonia, or foreign bodies. Most common imaging study.</td>
+            <td><span class="tag">Most common</span></td>
+          </tr>
+          <tr>
+            <td class="abbr-col">US</td>
+            <td class="term-col">Ultrasound (Sonography)</td>
+            <td>Sound waves image organs and blood flow in real time. No radiation; safe in pregnancy.</td>
+            <td><span class="tag">No radiation</span> <span class="tag">Real-time</span></td>
+          </tr>
+          <tr>
+            <td class="abbr-col">PET</td>
+            <td class="term-col">Positron Emission Tomography</td>
+            <td>Radioactive tracer shows metabolic activity. Used with CT (PET/CT) for cancer staging and therapy response.</td>
+            <td><span class="tag">Functional</span></td>
+          </tr>
+          <tr>
+            <td class="abbr-col">MG</td>
+            <td class="term-col">Mammography</td>
+            <td>Low-dose X-ray for breast cancer screening and diagnosis. 3D tomosynthesis improves detection in dense tissue.</td>
+            <td><span class="tag">Screening</span></td>
+          </tr>
+          <tr>
+            <td class="abbr-col">FLUORO</td>
+            <td class="term-col">Fluoroscopy</td>
+            <td>Continuous real-time X-ray used to guide procedures, barium studies, and joint injections.</td>
+            <td><span class="tag">Real-time</span> <span class="tag">Guided</span></td>
+          </tr>
+          <tr>
+            <td class="abbr-col">DEXA</td>
+            <td class="term-col">Dual-Energy X-Ray Absorptiometry</td>
+            <td>Measures bone mineral density to diagnose osteoporosis. Very low dose; results as T-score and Z-score.</td>
+            <td><span class="tag">Low dose</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 3. RVU -->
+    <div class="gloss-section" id="rvu">
+      <div class="section-num">Section 3</div>
+      <h2>Components of an RVU (Relative Value Unit)</h2>
+      <p>
+        The <strong>Relative Value Unit (RVU)</strong> is the currency of physician reimbursement in the
+        United States under the Medicare Physician Fee Schedule (MPFS). Every CPT code is assigned RVUs
+        across three components. Total payment is calculated as:
+      </p>
+      <p style="font-family:'Courier New',monospace; background:var(--bg3); border:1px solid var(--border);
+         border-radius:6px; padding:0.65rem 1rem; font-size:0.85rem; color:var(--text); margin:0.75rem 0;">
+        Payment = [(wRVU × Work GPCI) + (PE RVU × PE GPCI) + (MP RVU × MP GPCI)] × Conversion Factor
+      </p>
+
+      <table class="gloss-table" style="margin-top:0.75rem;">
+        <thead>
+          <tr>
+            <th style="width:110px">Component</th>
+            <th style="width:200px">Full Name</th>
+            <th>What It Measures</th>
+            <th style="width:90px">Typical Share</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="badge">wRVU</span></td>
+            <td>Work RVU</td>
+            <td>Reflects the physician's time, mental effort, technical skill, stress, and judgment required to perform a service. Determined by the AMA RVS Update Committee (RUC) and updated annually by CMS.</td>
+            <td>~52%</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-teal">PE RVU</span></td>
+            <td>Practice Expense RVU</td>
+            <td>Covers overhead costs associated with delivering the service — staff salaries, equipment depreciation, supplies, and facility costs. Split into facility (lower) and non-facility (higher) rates depending on where the service is performed.</td>
+            <td>~44%</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-red">MP RVU</span></td>
+            <td>Malpractice RVU</td>
+            <td>Accounts for the professional liability insurance cost associated with the service. Higher for procedural and interventional work, lower for interpretive services.</td>
+            <td>~4%</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Geographic Practice Cost Index (GPCI)</h3>
+      <p>
+        Each RVU component is adjusted by a locality-specific <strong>GPCI</strong> to reflect regional
+        cost differences. CMS publishes GPCI values for over 80 payment localities. A GPCI of 1.0 represents
+        the national average; high-cost areas (e.g., Manhattan, San Francisco) have GPCIs above 1.0.
+      </p>
+
+      <h3>Conversion Factor (CF)</h3>
+      <p>
+        The <strong>Conversion Factor</strong> is a dollar-per-RVU multiplier set annually by CMS through
+        the MPFS rulemaking process. For 2024, the CF was approximately <strong>$32.74</strong>. Congress
+        can override scheduled CF reductions through legislation, which has occurred frequently.
+      </p>
+
+      <h3>RVU in Radiology</h3>
+      <table class="gloss-table" style="margin-top:0.5rem;">
+        <thead>
+          <tr>
+            <th>Context</th>
+            <th>How RVUs Apply</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Radiologist compensation</strong></td>
+            <td>Most private practices and hospital groups tie radiologist pay to wRVU productivity. A typical diagnostic radiologist generates 8,000–12,000 wRVUs per year.</td>
+          </tr>
+          <tr>
+            <td><strong>Facility vs. non-facility</strong></td>
+            <td>PE RVUs differ based on site of service. Procedures done in a hospital (facility) have lower PE RVUs than the same procedure in an outpatient imaging center (non-facility).</td>
+          </tr>
+          <tr>
+            <td><strong>Technical vs. professional component</strong></td>
+            <td>Many radiology CPT codes split into a Technical Component (TC — equipment, staff, supplies) and a Professional Component (PC — interpretation). Each has its own RVU values appended with modifier -TC or -26.</td>
+          </tr>
+          <tr>
+            <td><strong>Global billing</strong></td>
+            <td>When the same entity owns both the equipment and employs the radiologist, the full (global) RVU is billed without splitting modifiers.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>RVU Dollar Cost by Common Radiology Procedure</h3>
+      <p>
+        Approximate 2024 Medicare non-facility rates (global bill). Actual reimbursement varies by
+        locality GPCI, payer contract, and facility vs. non-facility site of service.
+        Dollar estimate = Total RVU × $32.74 conversion factor.
+      </p>
+      <table class="gloss-table" style="margin-top:0.5rem;">
+        <thead>
+          <tr>
+            <th style="width:75px">CPT</th>
+            <th>Procedure</th>
+            <th style="width:65px">wRVU</th>
+            <th style="width:65px">PE RVU</th>
+            <th style="width:65px">MP RVU</th>
+            <th style="width:75px">Total RVU</th>
+            <th style="width:90px">Est. Payment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>71046</td>
+            <td>Chest X-ray, 2 views</td>
+            <td>0.18</td>
+            <td>0.55</td>
+            <td>0.02</td>
+            <td>0.75</td>
+            <td><strong>~$25</strong></td>
+          </tr>
+          <tr>
+            <td>73562</td>
+            <td>X-ray knee, 3 views</td>
+            <td>0.19</td>
+            <td>0.56</td>
+            <td>0.02</td>
+            <td>0.77</td>
+            <td><strong>~$25</strong></td>
+          </tr>
+          <tr>
+            <td>77080</td>
+            <td>DEXA bone density scan</td>
+            <td>0.29</td>
+            <td>0.63</td>
+            <td>0.02</td>
+            <td>0.94</td>
+            <td><strong>~$31</strong></td>
+          </tr>
+          <tr>
+            <td>77067</td>
+            <td>Mammography, bilateral (2D)</td>
+            <td>0.68</td>
+            <td>1.44</td>
+            <td>0.07</td>
+            <td>2.19</td>
+            <td><strong>~$72</strong></td>
+          </tr>
+          <tr>
+            <td>76700</td>
+            <td>Ultrasound abdomen, complete</td>
+            <td>0.74</td>
+            <td>1.41</td>
+            <td>0.07</td>
+            <td>2.22</td>
+            <td><strong>~$73</strong></td>
+          </tr>
+          <tr>
+            <td>76856</td>
+            <td>Ultrasound pelvis, complete</td>
+            <td>0.65</td>
+            <td>1.25</td>
+            <td>0.06</td>
+            <td>1.96</td>
+            <td><strong>~$64</strong></td>
+          </tr>
+          <tr>
+            <td>74246</td>
+            <td>Fluoroscopy upper GI series</td>
+            <td>0.89</td>
+            <td>2.13</td>
+            <td>0.08</td>
+            <td>3.10</td>
+            <td><strong>~$101</strong></td>
+          </tr>
+          <tr>
+            <td>70450</td>
+            <td>CT head without contrast</td>
+            <td>0.89</td>
+            <td>2.41</td>
+            <td>0.09</td>
+            <td>3.39</td>
+            <td><strong>~$111</strong></td>
+          </tr>
+          <tr>
+            <td>71250</td>
+            <td>CT chest without contrast</td>
+            <td>0.89</td>
+            <td>2.41</td>
+            <td>0.09</td>
+            <td>3.39</td>
+            <td><strong>~$111</strong></td>
+          </tr>
+          <tr>
+            <td>70470</td>
+            <td>CT head with &amp; without contrast</td>
+            <td>1.00</td>
+            <td>3.18</td>
+            <td>0.11</td>
+            <td>4.29</td>
+            <td><strong>~$140</strong></td>
+          </tr>
+          <tr>
+            <td>74177</td>
+            <td>CT abdomen &amp; pelvis with contrast</td>
+            <td>1.16</td>
+            <td>3.54</td>
+            <td>0.12</td>
+            <td>4.82</td>
+            <td><strong>~$158</strong></td>
+          </tr>
+          <tr>
+            <td>70551</td>
+            <td>MRI brain without contrast</td>
+            <td>1.18</td>
+            <td>5.62</td>
+            <td>0.10</td>
+            <td>6.90</td>
+            <td><strong>~$226</strong></td>
+          </tr>
+          <tr>
+            <td>72148</td>
+            <td>MRI lumbar spine without contrast</td>
+            <td>1.18</td>
+            <td>5.62</td>
+            <td>0.10</td>
+            <td>6.90</td>
+            <td><strong>~$226</strong></td>
+          </tr>
+          <tr>
+            <td>70553</td>
+            <td>MRI brain with &amp; without contrast</td>
+            <td>1.41</td>
+            <td>7.37</td>
+            <td>0.13</td>
+            <td>8.91</td>
+            <td><strong>~$292</strong></td>
+          </tr>
+          <tr>
+            <td>78816</td>
+            <td>PET/CT whole body</td>
+            <td>1.78</td>
+            <td>9.30</td>
+            <td>0.14</td>
+            <td>11.22</td>
+            <td><strong>~$367</strong></td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size:0.78rem; color:var(--muted); margin-top:0.5rem;">
+        &#9432; Values are approximations based on the 2024 Medicare Physician Fee Schedule.
+        Private payer contracts typically reimburse at a percentage above or below Medicare rates.
+        Hospital outpatient and ASC rates are set separately under OPPS/ASCFS.
+      </p>
+    </div>
+
+    <!-- 4. WORKFLOW -->
+    <div class="gloss-section" id="workflow">
+      <div class="section-num">Section 4</div>
+      <h2>Patient &amp; System Workflow: From Physician Visit to Payment</h2>
+      <p>
+        A single imaging encounter touches six interconnected systems. Understanding how data flows
+        between them helps clinicians, administrators, and patients navigate the radiology care cycle.
+      </p>
+
+      <!-- VISUAL FLOW -->
+      <div class="flow-wrap">
+        <div class="flow">
+          <div class="flow-step">
+            <div class="flow-box highlight">
+              <div class="flow-icon">🧑‍⚕️</div>
+              Patient Visits Physician
+              <div class="flow-sys">Clinical encounter</div>
+            </div>
+          </div>
+          <div class="flow-step">
+            <div class="flow-box highlight">
+              <div class="flow-icon">💻</div>
+              Order Placed in EHR
+              <div class="flow-sys">Electronic Health Record</div>
+            </div>
+          </div>
+          <div class="flow-step">
+            <div class="flow-box">
+              <div class="flow-icon">📋</div>
+              RIS Schedules &amp; Tracks
+              <div class="flow-sys">Radiology Info System</div>
+            </div>
+          </div>
+          <div class="flow-step">
+            <div class="flow-box">
+              <div class="flow-icon">🖼️</div>
+              Images Stored in PACS
+              <div class="flow-sys">Picture Archiving &amp; Comm.</div>
+            </div>
+          </div>
+          <div class="flow-step">
+            <div class="flow-box">
+              <div class="flow-icon">🩻</div>
+              Radiologist Reads &amp; Reports
+              <div class="flow-sys">Interpretation + dictation</div>
+            </div>
+          </div>
+          <div class="flow-step">
+            <div class="flow-box highlight">
+              <div class="flow-icon">💰</div>
+              Billing &amp; RCM
+              <div class="flow-sys">Revenue Cycle Mgmt.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DATA PATH -->
+      <p style="font-size:0.82rem; color:var(--muted); margin-bottom:0.4rem;"><strong style="color:var(--text)">Data path</strong></p>
+      <div class="data-flow">
+        <span class="df-node">Patient demographics &amp; order</span>
+        <span class="df-arrow">→</span>
+        <span class="df-node">EHR</span>
+        <span class="df-arrow">→ HL7 / FHIR →</span>
+        <span class="df-node">RIS</span>
+        <span class="df-arrow">→ Worklist (DICOM) →</span>
+        <span class="df-node">Modality (scanner)</span>
+        <span class="df-arrow">→ DICOM images →</span>
+        <span class="df-node">PACS</span>
+        <span class="df-arrow">→ Viewer →</span>
+        <span class="df-node">Radiologist</span>
+        <span class="df-arrow">→ Report →</span>
+        <span class="df-node">EHR / RIS</span>
+        <span class="df-arrow">→ Charge capture →</span>
+        <span class="df-node">RCM / Billing</span>
+        <span class="df-arrow">→ Payer →</span>
+        <span class="df-node">Payment</span>
+      </div>
+
+      <!-- SYSTEM TABLE -->
+      <table class="gloss-table" style="margin-top:0.75rem;">
+        <thead>
+          <tr>
+            <th style="width:90px">System</th>
+            <th style="width:190px">Full Name</th>
+            <th>Role in the Radiology Workflow</th>
+            <th style="width:130px">Key Standards / Tools</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="badge">EHR</span></td>
+            <td>Electronic Health Record</td>
+            <td>
+              The physician's primary system. The ordering provider enters clinical indication,
+              selects the appropriate CPT/imaging order, and routes it electronically to the imaging
+              center. The final radiology report is returned here for the referring provider to act on.
+              Patient demographics, insurance, and prior results are also sourced from the EHR.
+            </td>
+            <td>HL7, FHIR, CCD/CDA</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-teal">RIS</span></td>
+            <td>Radiology Information System</td>
+            <td>
+              The operational hub of the imaging center. RIS receives the order from the EHR,
+              schedules the patient, generates accession numbers, creates the technologist worklist,
+              tracks exam status, stores the radiologist's report, and feeds charge data to billing.
+              It communicates with PACS to link the report to the correct image set.
+            </td>
+            <td>HL7 ORM/ORU, DICOM MWL, IHE RWF</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-green">PACS</span></td>
+            <td>Picture Archiving &amp; Communication System</td>
+            <td>
+              Stores, retrieves, and distributes medical images in DICOM format. The imaging modality
+              (MRI, CT, X-ray scanner) pushes images directly to PACS after acquisition. The
+              radiologist pulls the exam from PACS onto a diagnostic workstation for interpretation.
+              PACS also enables teleradiology — remote reading from any location.
+            </td>
+            <td>DICOM 3.0, IHE XDS-I, VNA</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-purple">Modality / Scanner</span></td>
+            <td>Imaging Equipment</td>
+            <td>
+              The physical device (MRI, CT, X-ray, ultrasound) that acquires the study. It receives
+              patient demographics and protocol details from the RIS worklist (DICOM MWL), performs the
+              exam, and pushes the resulting DICOM images to PACS. The technologist operates the
+              modality and ensures image quality before sign-off.
+            </td>
+            <td>DICOM MWL, MPPS, DICOM Store</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-red">RCM</span></td>
+            <td>Revenue Cycle Management</td>
+            <td>
+              Encompasses the full financial workflow from charge capture to payment posting.
+              After the radiologist signs the report, the RIS triggers a charge with CPT and ICD-10
+              codes. The billing team (or automated system) scrubs the claim, submits it to the payer,
+              works denials, posts payments, and manages patient responsibility. RVUs are assigned at
+              this stage for physician productivity tracking.
+            </td>
+            <td>837P/835 EDI, ICD-10, CPT, ANSI X12</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Step-by-Step Breakdown</h3>
+      <ol class="steps-list">
+        <li>
+          <div>
+            <strong>Patient visits physician</strong>
+            <span>Physician evaluates the patient, identifies a clinical question (e.g., rule out fracture, evaluate lung nodule), and determines an imaging study is warranted.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>Order placed in EHR</strong>
+            <span>Physician selects the appropriate exam (CPT code), enters the clinical indication (ICD-10 diagnosis), and submits the order electronically. The EHR transmits an HL7 ORM message to the imaging center's RIS.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>RIS schedules the patient</strong>
+            <span>RIS receives the order, creates an accession number, schedules the appointment, sends patient prep instructions, and populates the technologist's DICOM worklist (MWL) with demographics and protocol.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>Patient arrives — technologist performs the scan</strong>
+            <span>The technologist confirms the patient's identity, reviews contraindications (metal, allergies, pregnancy), positions the patient, and acquires the study on the modality. Images are automatically pushed to PACS via DICOM Store SCU.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>Images stored in PACS</strong>
+            <span>PACS archives the DICOM images and links them to the accession number. The exam appears on the radiologist's worklist, prioritized by urgency (STAT, routine, wet read).</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>Radiologist interprets &amp; dictates</strong>
+            <span>The radiologist opens the exam in a diagnostic-grade PACS viewer, reviews prior comparisons, applies AI decision-support tools if available, and dictates the report using speech recognition software (e.g., PowerScribe, mModal).</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>Report signed &amp; returned to EHR</strong>
+            <span>The finalized report is signed in RIS, transmitted back to the referring physician's EHR via HL7 ORU message, and made available in the patient's chart. Critical results trigger immediate phone notification per ACR guidelines.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>Charge capture &amp; claim submission (RCM)</strong>
+            <span>RIS sends CPT and ICD-10 codes to the billing system. The claim is scrubbed for errors, split into technical (TC) and professional (PC) components if needed, and submitted electronically to the payer via 837P EDI transaction.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>Payer adjudication &amp; payment</strong>
+            <span>The insurance carrier adjudicates the claim, applies patient deductible/coinsurance, and remits payment via 835 ERA (Electronic Remittance Advice). Denials are worked by the RCM team; patient responsibility is billed separately.</span>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <!-- 6. PAYERS -->
+    <div class="gloss-section" id="payers">
+      <div class="section-num">Section 6</div>
+      <h2>Medicare, Medicaid &amp; Insurance: How They Pay for Imaging</h2>
+      <p>
+        Radiology reimbursement flows from three primary payer categories — federal programs (Medicare,
+        Medicaid) and private/commercial insurance. Each has its own fee schedule, coverage rules,
+        and claim submission pathway.
+      </p>
+
+      <!-- PAYER OVERVIEW TABLE -->
+      <table class="gloss-table" style="margin-top:0.75rem;">
+        <thead>
+          <tr>
+            <th style="width:130px">Payer</th>
+            <th>Who It Covers</th>
+            <th>How It Sets Rates</th>
+            <th style="width:115px">Claim Form</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="badge">Medicare</span></td>
+            <td>Adults 65+, certain disabled individuals under 65, end-stage renal disease (ESRD) patients</td>
+            <td>Pays based on the Medicare Physician Fee Schedule (MPFS) for professional services and Outpatient Prospective Payment System (OPPS) for hospital/facility services. Rates are set nationally and adjusted by GPCI.</td>
+            <td>CMS-1500 (professional) / UB-04 (facility)</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-green">Medicaid</span></td>
+            <td>Low-income individuals and families, pregnant women, children (CHIP), nursing home residents</td>
+            <td>Each state sets its own fee schedule. Rates are typically 60–80% of Medicare rates, though this varies widely by state. Some states use managed Medicaid plans (MCOs) that negotiate rates separately.</td>
+            <td>CMS-1500 / UB-04 (state-specific)</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-teal">Commercial Insurance</span></td>
+            <td>Employer-sponsored plans, individual marketplace plans (ACA), self-insured ERISA plans</td>
+            <td>Rates are negotiated directly between the payer and the provider (contracted rate). Typically expressed as a percentage of Medicare (e.g., 130% of Medicare) or as a flat fee schedule. Non-contracted (out-of-network) providers may be subject to surprise billing protections under the No Surprises Act.</td>
+            <td>CMS-1500 / UB-04 (EDI 837P/I)</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-purple">Medicare Advantage</span></td>
+            <td>Medicare beneficiaries enrolled in private managed care plans (Part C)</td>
+            <td>Private insurers administer Medicare Advantage plans and negotiate rates with providers. Must cover at least the same services as traditional Medicare but may require prior authorization for imaging. Rates vary by plan and contract.</td>
+            <td>CMS-1500 / UB-04 (plan-specific)</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-red">Self-Pay / Uninsured</span></td>
+            <td>Patients without insurance or choosing to pay out of pocket</td>
+            <td>Charged at the provider's chargemaster (list price), which is typically 2–5× the Medicare rate. Many providers offer a discounted cash-pay rate. The No Surprises Act requires good-faith cost estimates for scheduled services.</td>
+            <td>Direct patient bill</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>5.1 — Medicare: How It Pays for Radiology</h3>
+      <p>Medicare splits radiology payment into two components billed separately or together:</p>
+      <table class="gloss-table">
+        <thead>
+          <tr>
+            <th style="width:160px">Component</th>
+            <th>What It Covers</th>
+            <th style="width:150px">Fee Schedule Used</th>
+            <th style="width:110px">Who Bills</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Professional Component (PC)</strong><br><span style="font-size:0.75rem;color:var(--muted)">Modifier –26</span></td>
+            <td>The radiologist's interpretation and report. Billed regardless of where the equipment is located.</td>
+            <td>MPFS (Physician Fee Schedule)</td>
+            <td>Radiology group / physician</td>
+          </tr>
+          <tr>
+            <td><strong>Technical Component (TC)</strong><br><span style="font-size:0.75rem;color:var(--muted)">Modifier –TC</span></td>
+            <td>Equipment, supplies, technologist labor, and facility overhead required to perform the scan.</td>
+            <td>OPPS (hospital) or MPFS non-facility (freestanding center)</td>
+            <td>Imaging center / hospital</td>
+          </tr>
+          <tr>
+            <td><strong>Global Bill</strong><br><span style="font-size:0.75rem;color:var(--muted)">No modifier</span></td>
+            <td>Covers both PC and TC when the same entity owns the equipment and employs the radiologist (e.g., physician-owned outpatient center).</td>
+            <td>MPFS non-facility</td>
+            <td>Combined entity</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>5.2 — Medicare Coverage Rules for Imaging</h3>
+      <ol class="steps-list">
+        <li>
+          <div>
+            <strong>Medical Necessity (LCD / NCD)</strong>
+            <span>Medicare only pays for imaging that is medically necessary. Local Coverage Determinations (LCDs) issued by Medicare Administrative Contractors (MACs) define which ICD-10 diagnoses support payment for each CPT code.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>Appropriate Use Criteria (AUC) — CDSM</strong>
+            <span>Since 2023, ordering physicians must consult a CMS-approved Clinical Decision Support Mechanism (CDSM) before ordering advanced imaging (MRI, CT, PET, nuclear medicine). The consultation result is appended to the claim.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>Prior Authorization (Medicare Advantage)</strong>
+            <span>Traditional Medicare generally does not require prior auth for imaging, but Medicare Advantage plans may. CMS finalized rules limiting prior auth delays for medically necessary services starting 2026.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>Part B Deductible &amp; Coinsurance</strong>
+            <span>Medicare Part B covers outpatient imaging. Patients pay the annual Part B deductible ($240 in 2024) plus 20% coinsurance after Medicare pays 80%. Medigap/supplemental plans may cover the 20%.</span>
+          </div>
+        </li>
+      </ol>
+
+      <h3>5.3 — Medicaid: State Variability</h3>
+      <table class="gloss-table">
+        <thead>
+          <tr>
+            <th>Factor</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Fee Schedule</strong></td>
+            <td>Each state publishes its own Medicaid fee schedule. Some states pay as low as 40% of Medicare; others (e.g., New York, California) pay closer to 80–90% for certain services.</td>
+          </tr>
+          <tr>
+            <td><strong>Managed Medicaid (MCO)</strong></td>
+            <td>Most states contract with private Managed Care Organizations (MCOs) to deliver Medicaid benefits. MCOs negotiate their own rates with imaging providers, which may differ from the state fee schedule.</td>
+          </tr>
+          <tr>
+            <td><strong>Prior Authorization</strong></td>
+            <td>Medicaid and Medicaid MCOs frequently require prior authorization for advanced imaging (MRI, CT, PET). Turnaround times and criteria vary by state and plan.</td>
+          </tr>
+          <tr>
+            <td><strong>Dual Eligibles</strong></td>
+            <td>Patients covered by both Medicare and Medicaid (dual eligibles). Medicare pays first; Medicaid may cover the remaining cost-sharing depending on the state's rules.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>5.4 — Private Insurance: How Rates Are Set</h3>
+      <table class="gloss-table">
+        <thead>
+          <tr>
+            <th>Concept</th>
+            <th>Explanation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Contracted Rate</strong></td>
+            <td>In-network providers sign a contract specifying payment rates, usually as a percentage of Medicare (e.g., 120% of MPFS) or a flat fee schedule. The provider must accept this rate as payment in full.</td>
+          </tr>
+          <tr>
+            <td><strong>Allowed Amount</strong></td>
+            <td>The maximum the insurer will pay for a service. The provider writes off the difference between the billed charge and the allowed amount (contractual adjustment).</td>
+          </tr>
+          <tr>
+            <td><strong>Deductible</strong></td>
+            <td>The amount the patient pays out of pocket before insurance begins to pay. Imaging costs count toward the deductible. High-deductible health plans (HDHPs) can result in patients owing the full contracted rate.</td>
+          </tr>
+          <tr>
+            <td><strong>Coinsurance / Copay</strong></td>
+            <td>After the deductible is met, patients typically owe 10–30% coinsurance. Some plans use a flat copay (e.g., $75 for imaging). The insurer pays the remainder of the allowed amount.</td>
+          </tr>
+          <tr>
+            <td><strong>Prior Authorization</strong></td>
+            <td>Commercial plans commonly require prior auth for MRI, CT, PET, and nuclear medicine. The ordering physician submits clinical documentation; the payer's radiologist or nurse reviews against clinical criteria (e.g., MCG, InterQual).</td>
+          </tr>
+          <tr>
+            <td><strong>No Surprises Act (2022)</strong></td>
+            <td>Federal law limiting out-of-network balance billing for emergency services and certain scheduled services. Providers must deliver a good-faith cost estimate. Disputes resolved via Independent Dispute Resolution (IDR).</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>5.5 — Approximate Payer Rate Comparison (Imaging)</h3>
+      <p>Rates expressed as a percentage of Medicare MPFS. Actual rates vary by market, modality, and contract.</p>
+      <table class="gloss-table">
+        <thead>
+          <tr>
+            <th style="width:170px">Payer Type</th>
+            <th style="width:160px">Typical Rate vs. Medicare</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Traditional Medicare</td>
+            <td><strong>100%</strong> (baseline)</td>
+            <td>National base rate × GPCI adjustment. The benchmark all other rates reference.</td>
+          </tr>
+          <tr>
+            <td>Medicare Advantage</td>
+            <td><strong>95–115%</strong> of Medicare</td>
+            <td>Varies by plan and market. Some MA plans pay slightly above Medicare to attract network providers.</td>
+          </tr>
+          <tr>
+            <td>Commercial / Private</td>
+            <td><strong>110–200%</strong> of Medicare</td>
+            <td>Large health systems command higher rates. Independent imaging centers typically negotiate 120–150%.</td>
+          </tr>
+          <tr>
+            <td>Medicaid (FFS)</td>
+            <td><strong>40–90%</strong> of Medicare</td>
+            <td>Highly state-dependent. Some states have expanded Medicaid rates; others remain far below Medicare.</td>
+          </tr>
+          <tr>
+            <td>Managed Medicaid (MCO)</td>
+            <td><strong>50–95%</strong> of Medicare</td>
+            <td>MCO-negotiated; can exceed state FFS rates in competitive markets.</td>
+          </tr>
+          <tr>
+            <td>Workers' Compensation</td>
+            <td><strong>100–150%</strong> of Medicare</td>
+            <td>State-regulated; some states mandate specific WC fee schedules for imaging.</td>
+          </tr>
+          <tr>
+            <td>Self-Pay / Uninsured</td>
+            <td><strong>Chargemaster (200–500%)</strong><br>Cash-pay discount: <strong>~80–120%</strong></td>
+            <td>Chargemaster is rarely collected at list price. Most providers offer a significant cash-pay discount.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 7. SERVICES -->
+    <div class="gloss-section" id="services">
+      <div class="section-num">Section 7</div>
+      <h2>Services at an Imaging Center</h2>
+      <p>Modern imaging centers offer a full spectrum of diagnostic and interventional services, often under one roof.</p>
+
+      <div class="services-cols">
+        <div class="service-group">
+          <h3>Diagnostic Imaging</h3>
+          <ul>
+            <li>Routine X-rays and chest radiographs</li>
+            <li>MRI of brain, spine, joints, and abdomen</li>
+            <li>CT scanning with and without contrast</li>
+            <li>Ultrasound (abdominal, pelvic, vascular)</li>
+            <li>Echocardiography (cardiac ultrasound)</li>
+            <li>Nuclear medicine (bone scans, thyroid uptake)</li>
+            <li>PET/CT for oncology staging</li>
+            <li>Mammography and breast MRI</li>
+            <li>DEXA / bone density scanning</li>
+          </ul>
+        </div>
+        <div class="service-group">
+          <h3>Interventional &amp; Specialized</h3>
+          <ul>
+            <li>Image-guided biopsies (CT, ultrasound-guided)</li>
+            <li>Abscess drainage and fluid sampling</li>
+            <li>Tumor ablation (radiofrequency, microwave)</li>
+            <li>Vascular access and port placement</li>
+            <li>Uterine fibroid embolization (UFE)</li>
+            <li>Vertebroplasty / kyphoplasty</li>
+            <li>Peripheral artery and vein interventions</li>
+            <li>Fluoroscopy-guided joint injections</li>
+            <li>3D post-processing and AI-assisted reads</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. PREPARE -->
+    <div class="gloss-section" id="prepare">
+      <div class="section-num">Section 8</div>
+      <h2>How to Prepare for Your Imaging Appointment</h2>
+      <p>
+        Proper preparation ensures the best image quality and a smoother visit.
+        Always follow instructions provided by your specific imaging center — these are general guidelines only.
+      </p>
+
+      <ol class="steps-list">
+        <li>
+          <div>
+            <strong>Confirm Your Order</strong>
+            <span>Bring a physician referral or imaging order, your insurance card, and a valid photo ID to every appointment.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>Review Fasting Requirements</strong>
+            <span>CT and PET scans often require 4–6 hours of fasting. MRI and plain X-ray typically do not. Confirm with the center in advance.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>Disclose Medications &amp; Allergies</strong>
+            <span>Inform staff of all medications — especially blood thinners, metformin, and any previous contrast dye or iodine reactions.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>Remove Metal Objects</strong>
+            <span>Leave jewelry, piercings, and metal accessories at home. MRI patients must disclose all implants: pacemakers, stents, surgical hardware, cochlear implants.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>Wear Comfortable Clothing</strong>
+            <span>Loose, metal-free clothing is preferred. A gown may be provided depending on the body area being imaged.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>Arrange Transportation</strong>
+            <span>If sedation or contrast is used, arrange for a driver. Do not drive until cleared by the technologist or nurse.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>Hydrate (When Permitted)</strong>
+            <span>Good hydration aids contrast clearance and vein access. Ask whether drinking water is allowed before your specific exam.</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>Arrive Early</strong>
+            <span>Arrive 15–20 minutes early to complete paperwork, answer screening questions, and change if needed — reducing delays for everyone.</span>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <!-- 9. PROFESSIONALS -->
+    <div class="gloss-section" id="professionals">
+      <div class="section-num">Section 9</div>
+      <h2>Types of Radiology Professionals</h2>
+      <p>
+        A radiology encounter involves a team of credentialed professionals. Each role carries distinct
+        educational requirements, certification bodies, and clinical scope.
+      </p>
+
+      <h3>5.1 — Physicians</h3>
+      <table class="gloss-table">
+        <thead>
+          <tr>
+            <th style="width:70px">Credential</th>
+            <th style="width:210px">Title</th>
+            <th>Description &amp; Scope</th>
+            <th style="width:120px">Certifying Body</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="badge">MD</span></td>
+            <td>Doctor of Medicine — Radiologist</td>
+            <td>Allopathic physician who completed medical school, a 4-year diagnostic radiology residency, and often a fellowship (neuroradiology, IR, breast, etc.). Interprets all imaging, performs interventional procedures, and consults referring clinicians.</td>
+            <td>ABR (American Board of Radiology)</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-green">DO</span></td>
+            <td>Doctor of Osteopathic Medicine — Radiologist</td>
+            <td>Osteopathic physician with identical radiology residency training and clinical privileges as an MD radiologist. Holds a DO degree but passes the same ABR boards and practices in the same scope.</td>
+            <td>ABR / AOA</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>5.2 — Radiologic Technologists (RT)</h3>
+      <p>Technologists operate imaging equipment, position patients, and produce diagnostic-quality images under physician supervision. All primary credentials are issued by the <strong>ARRT</strong> (American Registry of Radiologic Technologists).</p>
+      <table class="gloss-table">
+        <thead>
+          <tr>
+            <th style="width:80px">Credential</th>
+            <th style="width:200px">Title</th>
+            <th>Description &amp; Scope</th>
+            <th style="width:120px">Certifying Body</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="badge badge-teal">RT(R)</span></td>
+            <td>Registered Radiologic Technologist</td>
+            <td>Primary credential for radiographers. Operates X-ray and fluoroscopic equipment, positions patients, and adjusts exposure parameters. Typically a 2-year accredited program plus national exam.</td>
+            <td>ARRT</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-teal">RT(MR)</span></td>
+            <td>MRI Technologist</td>
+            <td>Post-primary specialty in magnetic resonance imaging. Selects pulse sequences, manages contrast injection, and maintains patient safety in the MR environment (metal screening, implant clearance).</td>
+            <td>ARRT (MR)</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-teal">RT(CT)</span></td>
+            <td>CT Technologist</td>
+            <td>Post-primary specialty in computed tomography. Manages IV contrast protocols, gating techniques, and dose optimization strategies across body CT, cardiac CT, and CT angiography.</td>
+            <td>ARRT (CT)</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-teal">RT(M)</span></td>
+            <td>Mammographer</td>
+            <td>Post-primary specialty in mammographic imaging. Performs 2D and 3D digital breast tomosynthesis (DBT) and breast spot compression views. May hold dual credentials with RT(R).</td>
+            <td>ARRT (M)</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-teal">RT(T)</span></td>
+            <td>Radiation Therapist</td>
+            <td>Delivers precision radiation treatments to cancer patients using linear accelerators (LINACs). Works under a radiation oncologist — in treatment, not diagnostic imaging.</td>
+            <td>ARRT (T)</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-teal">RT(N)</span></td>
+            <td>Nuclear Medicine Technologist</td>
+            <td>Post-primary ARRT pathway for nuclear medicine. Prepares and administers radiopharmaceuticals, operates SPECT and gamma cameras. Also credentialed separately by NMTCB as <strong>CNMT</strong>.</td>
+            <td>ARRT (N) / NMTCB</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-purple">RRA</span></td>
+            <td>Registered Radiologist Assistant</td>
+            <td>Advanced-practice radiologic technologist. Performs patient assessment, image-guided procedures, and fluoroscopy under radiologist supervision. Requires master's degree plus ARRT(R)(RA) certification.</td>
+            <td>ARRT (RA)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>5.3 — Sonographers</h3>
+      <table class="gloss-table">
+        <thead>
+          <tr>
+            <th style="width:80px">Credential</th>
+            <th style="width:220px">Title</th>
+            <th>Description &amp; Scope</th>
+            <th style="width:120px">Certifying Body</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="badge badge-red">RDMS</span></td>
+            <td>Registered Diagnostic Medical Sonographer</td>
+            <td>Performs ultrasound of abdominal, pelvic, obstetric, and small-part structures. Credentialed by ARDMS with specialty exams (AB, OB/GYN, PS, BR, etc.).</td>
+            <td>ARDMS</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-red">RVT</span></td>
+            <td>Registered Vascular Technologist</td>
+            <td>Performs non-invasive vascular studies using Doppler ultrasound — arterial, venous, DVT, cerebrovascular. Credentialed by ARDMS or CCI (RVS credential).</td>
+            <td>ARDMS / CCI</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-red">RDCS</span></td>
+            <td>Registered Diagnostic Cardiac Sonographer</td>
+            <td>Performs echocardiography (transthoracic, transesophageal, stress echo) to assess cardiac structure and function. Specialty exams in AE, PE, FE via ARDMS.</td>
+            <td>ARDMS</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>5.4 — Support &amp; Physics Roles</h3>
+      <table class="gloss-table">
+        <thead>
+          <tr>
+            <th style="width:80px">Credential</th>
+            <th style="width:200px">Title</th>
+            <th>Description &amp; Scope</th>
+            <th style="width:120px">Certifying Body</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="badge">DABR</span></td>
+            <td>Medical Physicist</td>
+            <td>Ensures imaging equipment produces safe, accurate, and optimally dosed images. Responsible for equipment acceptance testing, QA programs, and radiation safety compliance. Typically holds a master's or PhD plus ABR certification.</td>
+            <td>ABR (Medical Physics)</td>
+          </tr>
+          <tr>
+            <td><span class="badge">CNMT</span></td>
+            <td>Certified Nuclear Medicine Technologist</td>
+            <td>Standalone credential from NMTCB for nuclear medicine technologists. Prepares, dispenses, and administers radiopharmaceuticals; operates PET/CT and SPECT/CT cameras.</td>
+            <td>NMTCB</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 9. RADIOLOGY PARTNERS -->
+    <div class="gloss-section" id="rp">
+      <div class="section-num">Section 9</div>
+      <h2>Radiology Partners — Business Model &amp; Sites Served</h2>
+      <p>
+        <strong>Radiology Partners (RP)</strong> is the largest physician-led radiology practice in the
+        United States, founded in 2012 and headquartered in El Segundo, California. RP partners with
+        radiologist-owned practices to deliver subspecialty reads, operational infrastructure, and
+        technology at scale — allowing radiologists to retain clinical autonomy while RP manages
+        the business.
+      </p>
+
+      <div class="stat-row" style="margin:1rem 0 1.5rem;">
+        <div class="stat-pill"><strong>2012</strong> Founded</div>
+        <div class="stat-pill"><strong>30+</strong> states with active partnerships</div>
+        <div class="stat-pill"><strong>2,000+</strong> radiologist partners</div>
+        <div class="stat-pill"><strong>Physician-led</strong> ownership model</div>
+        <div class="stat-pill"><strong>El Segundo, CA</strong> headquarters</div>
+        <div class="stat-pill"><strong>Teleradiology + On-site</strong> coverage</div>
+      </div>
+
+      <h3>9.1 — Business Model</h3>
+      <p>
+        RP operates on a <strong>practice partnership model</strong> — it does not simply employ
+        radiologists but rather acquires an ownership stake in existing radiology groups or recruits
+        new physicians into the RP partnership structure. The model separates clinical medicine
+        (owned and directed by physician partners) from business operations (managed by RP).
+      </p>
+      <table class="gloss-table" style="margin-top:0.5rem;">
+        <thead>
+          <tr>
+            <th style="width:180px">Model Element</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Physician Partnership</strong></td>
+            <td>Radiologists become equity partners in RP. They retain clinical decision-making authority and participate in governance. RP provides capital, infrastructure, and management — physicians provide clinical expertise and professional judgment.</td>
+          </tr>
+          <tr>
+            <td><strong>Practice Acquisition / Affiliation</strong></td>
+            <td>RP acquires or affiliates with existing independent radiology groups. The physicians join the RP partnership structure; RP assumes billing, contracting, HR, IT, and compliance functions. This allows practices to scale without losing independence.</td>
+          </tr>
+          <tr>
+            <td><strong>Centralized Operations</strong></td>
+            <td>RP centralizes non-clinical functions across all partner practices: revenue cycle management (RCM), payer contracting, credentialing, malpractice insurance, scheduling, and technology infrastructure (PACS, RIS, AI tools).</td>
+          </tr>
+          <tr>
+            <td><strong>Subspecialty Coverage</strong></td>
+            <td>Through its national network, RP provides subspecialty reads (neuroradiology, musculoskeletal, breast, interventional, pediatric) to smaller hospitals and imaging centers that could not otherwise afford or attract fellowship-trained subspecialists.</td>
+          </tr>
+          <tr>
+            <td><strong>Teleradiology / NightHawk</strong></td>
+            <td>RP operates a robust teleradiology platform enabling 24/7 coverage, overnight reads, and overflow coverage. Remote radiologists read studies from hospitals across time zones, eliminating the need for every facility to maintain an on-site overnight radiologist.</td>
+          </tr>
+          <tr>
+            <td><strong>AI &amp; Technology Integration</strong></td>
+            <td>RP integrates AI-powered decision support tools (e.g., stroke detection, pulmonary embolism flagging, nodule tracking) across its network. AI assists radiologists — it does not replace interpretation — and improves turnaround times on critical findings.</td>
+          </tr>
+          <tr>
+            <td><strong>Value-Based Contracts</strong></td>
+            <td>RP pursues enterprise contracts with health systems that move beyond fee-for-service toward quality-based and risk-sharing arrangements, including shared savings, bundled payments, and performance bonuses tied to turnaround time and report accuracy.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>9.2 — Types of Sites Served</h3>
+      <table class="gloss-table" style="margin-top:0.5rem;">
+        <thead>
+          <tr>
+            <th style="width:190px">Site Type</th>
+            <th>Description</th>
+            <th style="width:130px">Coverage Model</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Acute Care Hospitals</strong></td>
+            <td>Full-service hospitals requiring 24/7 radiology coverage including ER reads, inpatient imaging, and interventional radiology. RP provides both on-site and teleradiology coverage depending on volume and contract structure.</td>
+            <td>On-site + Tele</td>
+          </tr>
+          <tr>
+            <td><strong>Critical Access Hospitals (CAH)</strong></td>
+            <td>Small rural hospitals (≤25 beds) in underserved areas. RP provides overnight and overflow teleradiology, bringing subspecialty access to communities that previously relied on general radiologists or slow turnaround courier reads.</td>
+            <td>Primarily Tele</td>
+          </tr>
+          <tr>
+            <td><strong>Level I / II Trauma Centers</strong></td>
+            <td>High-acuity trauma hospitals with complex, time-sensitive imaging needs. RP staffs neuroradiology and musculoskeletal subspecialists for trauma reads, often with STAT turnaround requirements of 30–60 minutes.</td>
+            <td>On-site + Tele</td>
+          </tr>
+          <tr>
+            <td><strong>Outpatient Imaging Centers</strong></td>
+            <td>Freestanding diagnostic imaging centers offering MRI, CT, X-ray, ultrasound, and mammography. RP provides professional (PC) reads; the imaging center handles the technical component (TC). High volume, routine reads often completed remotely.</td>
+            <td>Teleradiology (PC)</td>
+          </tr>
+          <tr>
+            <td><strong>Health System Enterprise Contracts</strong></td>
+            <td>RP signs enterprise-level agreements with large health systems (e.g., 10–50 hospital networks) to be the exclusive radiology provider across all facilities. These contracts include standardized protocols, unified RIS/PACS integration, and system-wide quality reporting.</td>
+            <td>On-site + Tele</td>
+          </tr>
+          <tr>
+            <td><strong>Academic &amp; Teaching Hospitals</strong></td>
+            <td>RP partners with academic medical centers to supplement resident/fellow coverage, provide overnight reads, and offer subspecialty overflow — particularly in neuroradiology, interventional, and breast imaging.</td>
+            <td>Hybrid</td>
+          </tr>
+          <tr>
+            <td><strong>Urgent Care &amp; Emergency Departments</strong></td>
+            <td>Standalone urgent care chains and freestanding EDs contract with RP for fast-turnaround reads on X-ray, CT, and ultrasound. Turnaround expectations are often under 60 minutes for urgent and under 24 hours for routine.</td>
+            <td>Teleradiology</td>
+          </tr>
+          <tr>
+            <td><strong>VA &amp; Government Facilities</strong></td>
+            <td>RP holds contracts with the U.S. Department of Veterans Affairs (VA) to provide teleradiology reads for VA medical centers and community-based outpatient clinics (CBOCs), expanding imaging access for veterans in underserved locations.</td>
+            <td>Teleradiology</td>
+          </tr>
+          <tr>
+            <td><strong>Physician Office / Ancillary Imaging</strong></td>
+            <td>Physician offices with in-office imaging (X-ray, ultrasound, DEXA) may contract with RP for professional interpretation. RP radiologists read and sign these studies remotely, providing a compliant interpretation service for non-radiology practices.</td>
+            <td>Teleradiology (PC)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>9.3 — Revenue Model</h3>
+      <table class="gloss-table" style="margin-top:0.5rem;">
+        <thead>
+          <tr>
+            <th style="width:190px">Revenue Stream</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Professional Fee Billing (PC)</strong></td>
+            <td>The primary revenue source. RP bills payers for the professional component (modifier –26) of every imaging study interpreted by an RP radiologist. Revenue per read varies by modality, payer mix, and geographic GPCI.</td>
+          </tr>
+          <tr>
+            <td><strong>Global Billing</strong></td>
+            <td>At physician-owned imaging centers where RP controls both the technical and professional components, RP bills the global fee — capturing both TC and PC revenue on each study.</td>
+          </tr>
+          <tr>
+            <td><strong>Enterprise / Hospital Stipends</strong></td>
+            <td>Hospitals sometimes pay RP a stipend (subsidy) to maintain on-site radiologist coverage when professional fee revenue alone is insufficient to support staffing (common in low-volume or rural hospitals). The stipend bridges the gap between professional fee revenue and the cost of maintaining coverage.</td>
+          </tr>
+          <tr>
+            <td><strong>Interventional Radiology Procedures</strong></td>
+            <td>IR procedures (biopsies, ablations, vascular interventions) carry significantly higher RVUs than diagnostic reads. RP's IR division generates disproportionate revenue per case relative to volume.</td>
+          </tr>
+          <tr>
+            <td><strong>Value-Based / Shared Savings</strong></td>
+            <td>In enterprise contracts with large health systems, RP participates in shared savings arrangements where efficiency gains (faster reads, fewer repeat studies, AI-driven protocol optimization) generate bonus payments above the base fee schedule.</td>
+          </tr>
+          <tr>
+            <td><strong>Technology &amp; AI Licensing</strong></td>
+            <td>RP licenses its technology stack — including AI tools, workflow software, and PACS/RIS integrations — to partner practices and, in some arrangements, to external clients as a standalone product.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>9.4 — Mosaic Technology Platform</h3>
+      <p>
+        <strong>Mosaic</strong> is Radiology Partners' proprietary technology platform — an integrated
+        suite of workflow, data, and AI tools purpose-built for large-scale radiology operations.
+        It serves as the connective tissue across RP's 2,000+ radiologist network, standardizing
+        how studies are routed, read, reported, billed, and quality-reviewed regardless of which
+        hospital or imaging center originated the exam.
+      </p>
+
+      <table class="gloss-table" style="margin-top:0.5rem;">
+        <thead>
+          <tr>
+            <th style="width:200px">Mosaic Component</th>
+            <th>Function</th>
+            <th style="width:160px">Replaces / Integrates With</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Mosaic Worklist</strong></td>
+            <td>Centralized, intelligent reading worklist aggregating studies from all partner sites into a unified queue. Automatically prioritizes studies by modality, urgency level (STAT/Urgent/Routine), subspecialty, and radiologist credentials. Eliminates the need for each site to maintain a separate PACS worklist.</td>
+            <td>Site-specific PACS worklists; RIS scheduling queues</td>
+          </tr>
+          <tr>
+            <td><strong>Mosaic Router</strong></td>
+            <td>Rules-based study routing engine. Receives studies from hospital PACS/RIS via DICOM and HL7, then assigns each exam to the optimal radiologist based on subspecialty, licensure (state credentialing), shift coverage, workload balance, and turnaround SLA. Supports cross-site load balancing across time zones.</td>
+            <td>Manual dispatcher model; NightHawk legacy routing</td>
+          </tr>
+          <tr>
+            <td><strong>Mosaic Analytics</strong></td>
+            <td>Real-time operational and financial dashboard. Tracks wRVU production per radiologist, TAT compliance by site and priority level, STAT critical result communication logs, payer mix, and denial rates. Enables enterprise-wide performance benchmarking across all RP partner groups.</td>
+            <td>Disconnected spreadsheet reporting; siloed RCM dashboards</td>
+          </tr>
+          <tr>
+            <td><strong>Mosaic AI Layer</strong></td>
+            <td>Integrates third-party and internally developed AI algorithms directly into the worklist. AI triage flags run at time of study arrival — e.g., intracranial hemorrhage detection (CT), pulmonary embolism (CTPA), pneumothorax (CXR), large vessel occlusion (CT angio). Studies with positive AI flags are automatically escalated to the top of the STAT queue regardless of order priority.</td>
+            <td>Standalone AI vendor portals; manual radiologist triage</td>
+          </tr>
+          <tr>
+            <td><strong>Mosaic RCM Integration</strong></td>
+            <td>Bi-directional interface between the worklist and RP's revenue cycle management system. When a radiologist signs a report, Mosaic automatically captures the CPT codes, modifiers (–26, –TC), rendering provider NPI, and site-of-service, then transmits a charge to the RCM platform for claim generation. Charge lag (time from read to charge drop) is tracked as a KPI.</td>
+            <td>Manual charge entry; delayed batch billing</td>
+          </tr>
+          <tr>
+            <td><strong>Mosaic Quality Module</strong></td>
+            <td>Peer review and quality assurance engine. Implements ACR RADPEER scoring (1–3 scale) for random and targeted peer review of radiologist reports. Tracks discrepancy rates, critical miss patterns, and protocol adherence. Data feeds into RP's enterprise quality committee for credentialing and privileging decisions.</td>
+            <td>Paper-based peer review; site-specific QA programs</td>
+          </tr>
+          <tr>
+            <td><strong>Mosaic Credentialing &amp; Licensing Hub</strong></td>
+            <td>Tracks each radiologist's licensure status across all 50 states (where applicable), DEA registrations, hospital privileges, malpractice coverage, and CME compliance. Automatically blocks study routing to states where a radiologist lacks active licensure, maintaining regulatory compliance across teleradiology coverage.</td>
+            <td>Manual credentialing spreadsheets; state-by-state licensing services</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Mosaic Data Flow</h3>
+      <p>How a study moves through the Mosaic platform from acquisition to billing:</p>
+      <ol style="margin:0.75rem 0 0.75rem 1.5rem; line-height:2.2;">
+        <li><strong>Study arrives</strong> — Modality pushes DICOM images to hospital PACS; RIS sends HL7 ORM order to Mosaic Router.</li>
+        <li><strong>AI triage</strong> — Mosaic AI layer runs configured algorithms on the incoming study within seconds of arrival; positive findings elevate priority automatically.</li>
+        <li><strong>Routing decision</strong> — Router evaluates radiologist pool: subspecialty match, state license, current workload, shift assignment → assigns to best-fit radiologist's Mosaic Worklist.</li>
+        <li><strong>Read &amp; dictation</strong> — Radiologist opens study in PACS viewer (Mosaic-integrated or vendor PACS), dictates report using voice recognition (Nuance PowerScribe or Fluency); AI ambient tools suggest findings based on image analysis.</li>
+        <li><strong>Report sign-off</strong> — Signed report transmitted back to originating site via HL7 ORU; PACS status updated; critical result flag triggers call workflow if applicable.</li>
+        <li><strong>Charge capture</strong> — Mosaic RCM Integration auto-generates charge record with CPT, modifier, rendering NPI, and place of service; transmits to billing engine for 837P claim generation.</li>
+        <li><strong>Analytics update</strong> — wRVU, TAT, and charge data post to Mosaic Analytics in real time; site-level and radiologist-level dashboards refresh.</li>
+      </ol>
+
+      <h3>Mosaic vs. Competitors' Platforms</h3>
+      <table class="gloss-table">
+        <thead>
+          <tr>
+            <th>Platform</th>
+            <th>Company</th>
+            <th>Key Capabilities</th>
+            <th>Differentiator vs. Mosaic</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Mosaic</strong></td>
+            <td>Radiology Partners</td>
+            <td>Worklist, routing, AI triage, RCM integration, peer review, credentialing</td>
+            <td>—  (reference)</td>
+          </tr>
+          <tr>
+            <td><strong>Nines Platform</strong></td>
+            <td>Nines (USRS partner)</td>
+            <td>AI-first worklist; subspecialty routing; real-time dashboards</td>
+            <td>AI-native architecture; narrower RCM integration than Mosaic</td>
+          </tr>
+          <tr>
+            <td><strong>Visage 7</strong></td>
+            <td>Visage Imaging</td>
+            <td>Enterprise PACS viewer; multi-site worklist; streaming image delivery</td>
+            <td>Best-in-class viewer; less integrated RCM and credentialing layer</td>
+          </tr>
+          <tr>
+            <td><strong>Nuance AI Marketplace</strong></td>
+            <td>Nuance / Microsoft</td>
+            <td>PowerScribe reporting + AI marketplace for algorithm deployment</td>
+            <td>Reporting-centric; not a full operations platform</td>
+          </tr>
+          <tr>
+            <td><strong>RamSoft PowerServer</strong></td>
+            <td>RamSoft</td>
+            <td>Cloud RIS/PACS with worklist and basic routing</td>
+            <td>Smaller-practice focus; limited enterprise-scale routing logic</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 10.4 COMPETITORS + MAP (appended to RP section) -->
+    <div class="gloss-section" id="competitors">
+      <div class="section-num">Section 10 — cont.</div>
+      <h2>10.4 — Competitors of Radiology Partners</h2>
+      <p>
+        RP competes across three overlapping market segments: physician group management,
+        teleradiology, and outpatient imaging center ownership. Competitors range from pure-play
+        teleradiology vendors to large multi-specialty staffing firms.
+      </p>
+      <table class="gloss-table" style="margin-top:0.75rem;">
+        <thead>
+          <tr>
+            <th style="width:180px">Company</th>
+            <th style="width:130px">Segment</th>
+            <th style="width:130px">Geographic Reach</th>
+            <th style="width:150px">Business Model</th>
+            <th>Key Differentiator vs. RP</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>US Radiology Specialists (USRS)</strong></td>
+            <td><span class="tag">Group Mgmt</span></td>
+            <td>~24 states</td>
+            <td>Physician partnership / equity model</td>
+            <td>Most direct competitor — near-identical physician partnership model. Backed by Warburg Pincus. Focuses on independent practice affiliation.</td>
+          </tr>
+          <tr>
+            <td><strong>Radiology Partners of Virginia (RPV) / Regional Groups</strong></td>
+            <td><span class="tag">Group Mgmt</span></td>
+            <td>Regional</td>
+            <td>Physician-owned group</td>
+            <td>Smaller, regionally focused independent groups that resist RP/USRS acquisition. Compete for the same hospital contracts.</td>
+          </tr>
+          <tr>
+            <td><strong>vRad (Virtual Radiologic / Mednax)</strong></td>
+            <td><span class="tag">Teleradiology</span></td>
+            <td>National (50 states)</td>
+            <td>Pure teleradiology — employed radiologist model</td>
+            <td>Oldest large-scale teleradiology company. Acquired by Mednax in 2015. Radiologists are employees, not partners. Focused on overflow and overnight coverage.</td>
+          </tr>
+          <tr>
+            <td><strong>StatRad</strong></td>
+            <td><span class="tag">Teleradiology</span></td>
+            <td>National</td>
+            <td>Employed teleradiologist model</td>
+            <td>Subspecialty-focused teleradiology. Strong in neuroradiology and musculoskeletal overnight reads. Competes for RP's teleradiology hospital contracts.</td>
+          </tr>
+          <tr>
+            <td><strong>Teleradiology Solutions (TRS)</strong></td>
+            <td><span class="tag">Teleradiology</span></td>
+            <td>National + International</td>
+            <td>Offshore + domestic reads</td>
+            <td>Uses international radiologists (India, Australia) for overnight reads at lower cost. Competes primarily on price for routine/overnight coverage.</td>
+          </tr>
+          <tr>
+            <td><strong>RadNet</strong></td>
+            <td><span class="tag">Outpatient Imaging</span></td>
+            <td>~10 states, 360+ centers</td>
+            <td>Owns imaging centers (TC + PC)</td>
+            <td>Largest US outpatient imaging center chain. Vertically integrated — owns equipment, employs technologists and radiologists. Competes for outpatient volume, not hospital contracts.</td>
+          </tr>
+          <tr>
+            <td><strong>Akumin (formerly Alliance HealthCare)</strong></td>
+            <td><span class="tag">Outpatient Imaging</span></td>
+            <td>~10 states, 160+ centers</td>
+            <td>Owns outpatient imaging centers</td>
+            <td>Second-largest outpatient imaging network. Acquired Alliance HealthCare Services. Competes with RP for outpatient professional reads at its own centers.</td>
+          </tr>
+          <tr>
+            <td><strong>SimonMed Imaging</strong></td>
+            <td><span class="tag">Outpatient Imaging</span></td>
+            <td>Southwest &amp; Southeast US</td>
+            <td>Physician-owned imaging centers</td>
+            <td>Large regional outpatient imaging brand. Physician-founded and -owned. Strong in AZ, FL, TX — RP's key markets.</td>
+          </tr>
+          <tr>
+            <td><strong>Envision Healthcare (RadAmerica)</strong></td>
+            <td><span class="tag">Multi-specialty</span></td>
+            <td>National</td>
+            <td>Employed physician model</td>
+            <td>Large multi-specialty staffing firm with a radiology division. Competes for hospital enterprise contracts. Filed Chapter 11 in 2023; restructuring ongoing.</td>
+          </tr>
+          <tr>
+            <td><strong>TeamHealth</strong></td>
+            <td><span class="tag">Multi-specialty</span></td>
+            <td>National, 47 states</td>
+            <td>Employed physician model</td>
+            <td>Primarily emergency medicine, but has radiology contracts in some hospitals. Competes for multi-service hospital contracts where radiology is bundled.</td>
+          </tr>
+          <tr>
+            <td><strong>Sound Physicians</strong></td>
+            <td><span class="tag">Hospital Medicine</span></td>
+            <td>National, 40+ states</td>
+            <td>Employed physician model</td>
+            <td>Focused on hospitalist / intensivist medicine. Indirect competitor — competes for enterprise health system relationships where radiology can be cross-sold.</td>
+          </tr>
+          <tr>
+            <td><strong>Mednax (Pediatrix / Radiology)</strong></td>
+            <td><span class="tag">Multi-specialty</span></td>
+            <td>National</td>
+            <td>Employed model + teleradiology (vRad)</td>
+            <td>Owns vRad teleradiology and retains some radiology group contracts. Divested most radiology operations to focus on anesthesiology and neonatology.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 style="margin-top:2.5rem;">10.5 — States Where Radiology Partners Operates</h2>
+      <p style="margin-bottom:1rem;">
+        Radiology Partners has active partnerships, enterprise contracts, or teleradiology
+        coverage in <strong>36+ states</strong> as of 2024. Highlighted states indicate
+        confirmed or reported RP presence based on public filings and press releases.
+      </p>
+
+      <!-- USA TILE GRID MAP -->
+      <div style="overflow-x:auto; padding-bottom:0.5rem;">
+        <svg viewBox="0 0 754 380" width="100%" style="max-width:754px; font-family:-apple-system,'Segoe UI',sans-serif;">
+
+          <!-- TITLE -->
+          <text x="377" y="14" text-anchor="middle" font-size="11" font-weight="700" fill="#1f2328">Radiology Partners — U.S. Coverage Map</text>
+
+          <!-- LEGEND -->
+          <rect x="20" y="348" width="14" height="14" rx="3" fill="#1a56a0"/>
+          <text x="38" y="360" font-size="10" fill="#57606a">RP Active (36+ states)</text>
+          <rect x="160" y="348" width="14" height="14" rx="3" fill="#d0d7de"/>
+          <text x="178" y="360" font-size="10" fill="#57606a">RP Not confirmed</text>
+          <text x="754" y="360" text-anchor="end" font-size="9" fill="#aaa">Sources: RP public filings, press releases, 2024</text>
+
+          <!-- ROW 0 -->
+          <!-- ME -->
+          <rect x="680" y="22" width="54" height="36" rx="5" fill="#d0d7de"/>
+          <text x="707" y="44" text-anchor="middle" font-size="9" font-weight="700" fill="#57606a">ME</text>
+
+          <!-- ROW 1 -->
+          <!-- WA --><rect x="20" y="64" width="54" height="36" rx="5" fill="#1a56a0"/>
+          <text x="47" y="86" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">WA</text>
+          <!-- MT --><rect x="80" y="64" width="54" height="36" rx="5" fill="#1a56a0"/>
+          <text x="107" y="86" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">MT</text>
+          <!-- ND --><rect x="140" y="64" width="54" height="36" rx="5" fill="#d0d7de"/>
+          <text x="167" y="86" text-anchor="middle" font-size="9" font-weight="700" fill="#57606a">ND</text>
+          <!-- MN --><rect x="200" y="64" width="54" height="36" rx="5" fill="#1a56a0"/>
+          <text x="227" y="86" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">MN</text>
+          <!-- WI --><rect x="320" y="64" width="54" height="36" rx="5" fill="#1a56a0"/>
+          <text x="347" y="86" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">WI</text>
+          <!-- MI --><rect x="380" y="64" width="54" height="36" rx="5" fill="#1a56a0"/>
+          <text x="407" y="86" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">MI</text>
+          <!-- NY --><rect x="500" y="64" width="54" height="36" rx="5" fill="#1a56a0"/>
+          <text x="527" y="86" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">NY</text>
+          <!-- VT --><rect x="560" y="64" width="54" height="36" rx="5" fill="#d0d7de"/>
+          <text x="587" y="86" text-anchor="middle" font-size="9" font-weight="700" fill="#57606a">VT</text>
+          <!-- NH --><rect x="620" y="64" width="54" height="36" rx="5" fill="#d0d7de"/>
+          <text x="647" y="86" text-anchor="middle" font-size="9" font-weight="700" fill="#57606a">NH</text>
+
+          <!-- ROW 2 -->
+          <!-- OR --><rect x="20" y="106" width="54" height="36" rx="5" fill="#1a56a0"/>
+          <text x="47" y="128" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">OR</text>
+          <!-- ID --><rect x="80" y="106" width="54" height="36" rx="5" fill="#1a56a0"/>
+          <text x="107" y="128" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">ID</text>
+          <!-- WY --><rect x="140" y="106" width="54" height="36" rx="5" fill="#d0d7de"/>
+          <text x="167" y="128" text-anchor="middle" font-size="9" font-weight="700" fill="#57606a">WY</text>
+          <!-- SD --><rect x="200" y="106" width="54" height="36" rx="5" fill="#d0d7de"/>
+          <text x="227" y="128" text-anchor="middle" font-size="9" font-weight="700" fill="#57606a">SD</text>
+          <!-- IA --><rect x="260" y="106" width="54" height="36" rx="5" fill="#1a56a0"/>
+          <text x="287" y="128" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">IA</text>
+          <!-- IL --><rect x="320" y="106" width="54" height="36" rx="5" fill="#1a56a0"/>
+          <text x="347" y="128" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">IL</text>
+          <!-- IN --><rect x="380" y="106" width="54" height="36" rx="5" fill="#1a56a0"/>
+          <text x="407" y="128" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">IN</text>
+          <!-- OH --><rect x="440" y="106" width="54" height="36" rx="5" fill="#1a56a0"/>
+          <text x="467" y="128" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">OH</text>
+          <!-- PA --><rect x="500" y="106" width="54" height="36" rx="5" fill="#1a56a0"/>
+          <text x="527" y="128" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">PA</text>
+          <!-- NJ --><rect x="560" y="106" width="54" height="36" rx="5" fill="#1a56a0"/>
+          <text x="587" y="128" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">NJ</text>
+          <!-- CT --><rect x="620" y="106" width="54" height="36" rx="5" fill="#1a56a0"/>
+          <text x="647" y="128" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">CT</text>
+          <!-- MA --><rect x="680" y="106" width="54" height="36" rx="5" fill="#1a56a0"/>
+          <text x="707" y="128" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">MA</text>
+
+          <!-- ROW 3 -->
+          <!-- CA --><rect x="20" y="148" width="54" height="36" rx="5" fill="#1a56a0"/>
+          <text x="47" y="170" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">CA</text>
+          <!-- NV --><rect x="80" y="148" width="54" height="36" rx="5" fill="#1a56a0"/>
+          <text x="107" y="170" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">NV</text>
+          <!-- CO --><rect x="140" y="148" width="54" height="36" rx="5" fill="#1a56a0"/>
+          <text x="167" y="170" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">CO</text>
+          <!-- NE --><rect x="200" y="148" width="54" height="36" rx="5" fill="#1a56a0"/>
+          <text x="227" y="170" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">NE</text>
+          <!-- MO --><rect x="260" y="148" width="54" height="36" rx="5" fill="#1a56a0"/>
+          <text x="287" y="170" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">MO</text>
+          <!-- KY --><rect x="320" y="148" width="54" height="36" rx="5" fill="#1a56a0"/>
+          <text x="347" y="170" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">KY</text>
+          <!-- WV --><rect x="380" y="148" width="54" height="36" rx="5" fill="#d0d7de"/>
+          <text x="407" y="170" text-anchor="middle" font-size="9" font-weight="700" fill="#57606a">WV</text>
+          <!-- VA --><rect x="440" y="148" width="54" height="36" rx="5" fill="#1a56a0"/>
+          <text x="467" y="170" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">VA</text>
+          <!-- MD --><rect x="500" y="148" width="54" height="36" rx="5" fill="#1a56a0"/>
+          <text x="527" y="170" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">MD</text>
+          <!-- DE --><rect x="560" y="148" width="54" height="36" rx="5" fill="#d0d7de"/>
+          <text x="587" y="170" text-anchor="middle" font-size="9" font-weight="700" fill="#57606a">DE</text>
+          <!-- RI --><rect x="680" y="148" width="54" height="36" rx="5" fill="#d0d7de"/>
+          <text x="707" y="170" text-anchor="middle" font-size="9" font-weight="700" fill="#57606a">RI</text>
+
+          <!-- ROW 4 -->
+          <!-- AZ --><rect x="80" y="190" width="54" height="36" rx="5" fill="#1a56a0"/>
+          <text x="107" y="212" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">AZ</text>
+          <!-- UT --><rect x="140" y="190" width="54" height="36" rx="5" fill="#1a56a0"/>
+          <text x="167" y="212" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">UT</text>
+          <!-- KS --><rect x="200" y="190" width="54" height="36" rx="5" fill="#1a56a0"/>
+          <text x="227" y="212" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">KS</text>
+          <!-- AR --><rect x="260" y="190" width="54" height="36" rx="5" fill="#d0d7de"/>
+          <text x="287" y="212" text-anchor="middle" font-size="9" font-weight="700" fill="#57606a">AR</text>
+          <!-- TN --><rect x="320" y="190" width="54" height="36" rx="5" fill="#1a56a0"/>
+          <text x="347" y="212" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">TN</text>
+          <!-- NC --><rect x="380" y="190" width="54" height="36" rx="5" fill="#1a56a0"/>
+          <text x="407" y="212" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">NC</text>
+          <!-- SC --><rect x="440" y="190" width="54" height="36" rx="5" fill="#1a56a0"/>
+          <text x="467" y="212" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">SC</text>
+
+          <!-- ROW 5 -->
+          <!-- NM --><rect x="140" y="232" width="54" height="36" rx="5" fill="#d0d7de"/>
+          <text x="167" y="254" text-anchor="middle" font-size="9" font-weight="700" fill="#57606a">NM</text>
+          <!-- OK --><rect x="200" y="232" width="54" height="36" rx="5" fill="#1a56a0"/>
+          <text x="227" y="254" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">OK</text>
+          <!-- LA --><rect x="260" y="232" width="54" height="36" rx="5" fill="#1a56a0"/>
+          <text x="287" y="254" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">LA</text>
+          <!-- MS --><rect x="320" y="232" width="54" height="36" rx="5" fill="#d0d7de"/>
+          <text x="347" y="254" text-anchor="middle" font-size="9" font-weight="700" fill="#57606a">MS</text>
+          <!-- AL --><rect x="380" y="232" width="54" height="36" rx="5" fill="#1a56a0"/>
+          <text x="407" y="254" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">AL</text>
+          <!-- GA --><rect x="440" y="232" width="54" height="36" rx="5" fill="#1a56a0"/>
+          <text x="467" y="254" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">GA</text>
+
+          <!-- ROW 6 -->
+          <!-- TX --><rect x="200" y="274" width="54" height="36" rx="5" fill="#1a56a0"/>
+          <text x="227" y="296" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">TX</text>
+          <!-- FL --><rect x="440" y="274" width="54" height="36" rx="5" fill="#1a56a0"/>
+          <text x="467" y="296" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">FL</text>
+
+          <!-- ROW 7 (AK + HI insets) -->
+          <!-- AK --><rect x="20" y="316" width="54" height="36" rx="5" fill="#d0d7de"/>
+          <text x="47" y="338" text-anchor="middle" font-size="9" font-weight="700" fill="#57606a">AK</text>
+          <!-- HI --><rect x="200" y="316" width="54" height="36" rx="5" fill="#d0d7de"/>
+          <text x="227" y="338" text-anchor="middle" font-size="9" font-weight="700" fill="#57606a">HI</text>
+
+        </svg>
+      </div>
+      <p style="font-size:0.75rem;color:var(--muted);margin-top:0.4rem;">
+        &#9432; Map shows state-level presence only. Within each state, coverage may be limited
+        to specific metro areas, hospital systems, or teleradiology contracts. AK and HI are inset
+        in the lower-left for display purposes.
+      </p>
+    </div>
+
+    <!-- 11. WHEN TO SEE -->
+    <div class="gloss-section" id="when">
+      <div class="section-num">Section 11</div>
+      <h2>When to Seek Imaging or Specialist Referral</h2>
+      <p>
+        Imaging studies are ordered by a licensed physician. The following are common clinical triggers
+        that prompt a referral to an imaging center.
+      </p>
+
+      <ul class="reasons-list">
+        <li>
+          <div class="icon">🦴</div>
+          <div><strong>Unexplained Bone or Joint Pain</strong>
+          <span>Persistent pain not explained by injury — especially with night pain, swelling, or warmth — warrants imaging to rule out fractures, avascular necrosis, or bone tumors.</span></div>
+        </li>
+        <li>
+          <div class="icon">🧠</div>
+          <div><strong>Neurological Symptoms</strong>
+          <span>New or worsening headaches, vision changes, vertigo, numbness, or focal weakness often require brain or spine MRI/CT to exclude stroke, mass, or demyelinating disease.</span></div>
+        </li>
+        <li>
+          <div class="icon">🫁</div>
+          <div><strong>Chest or Pulmonary Concerns</strong>
+          <span>Persistent cough, hemoptysis, shortness of breath, or abnormal auscultation findings may prompt chest X-ray or CT for evaluation of pneumonia, effusion, or malignancy.</span></div>
+        </li>
+        <li>
+          <div class="icon">🫀</div>
+          <div><strong>Abdominal or Pelvic Pain</strong>
+          <span>Unexplained pain, bloating, or mass may indicate gallstones, kidney stones, appendicitis, ovarian pathology, or other conditions visible on ultrasound or CT.</span></div>
+        </li>
+        <li>
+          <div class="icon">🩸</div>
+          <div><strong>Cancer Screening &amp; Surveillance</strong>
+          <span>Annual mammography, low-dose CT lung screening (LDCT) for high-risk smokers, and interval follow-up scans after cancer treatment are established indications.</span></div>
+        </li>
+        <li>
+          <div class="icon">🏃</div>
+          <div><strong>Sports or Trauma Injuries</strong>
+          <span>Suspected fractures, ligament tears, meniscal injury, or rotator cuff tears require X-ray (acute) and MRI (soft tissue detail) to direct treatment or surgical planning.</span></div>
+        </li>
+        <li>
+          <div class="icon">🔬</div>
+          <div><strong>Pre-Surgical Planning</strong>
+          <span>Surgeons commonly require detailed imaging before procedures to map anatomy, delineate tumor margins, and identify vascular supply — minimizing operative risk.</span></div>
+        </li>
+        <li>
+          <div class="icon">📈</div>
+          <div><strong>Monitoring Known Conditions</strong>
+          <span>Chronic diseases — liver cirrhosis, aortic aneurysm, inflammatory bowel disease, known malignancy — require periodic imaging to track progression or treatment response.</span></div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 12. IMAGING PRIORITY / URGENCY LEVELS -->
+    <div class="gloss-section" id="urgency">
+      <div class="section-num">Section 12</div>
+      <h2>Imaging Priority &amp; Urgency Levels</h2>
+      <p>
+        Every imaging order carries a <strong>priority level</strong> that drives scheduling turnaround in the RIS
+        and dictates how quickly the radiologist must read and report. Hospitals and outpatient centers use a
+        standardized 4-tier framework aligned with ACR (American College of Radiology) guidelines.
+      </p>
+
+      <h3>Tier Overview</h3>
+      <table class="gloss-table">
+        <thead>
+          <tr>
+            <th>Priority Level</th>
+            <th>Also Called</th>
+            <th>Order-to-Scan TAT</th>
+            <th>Read &amp; Report TAT</th>
+            <th>Typical Setting</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span style="background:#fde8e8;color:#c0392b;font-weight:700;padding:2px 8px;border-radius:4px;">STAT / Emergent</span></td>
+            <td>P1, Critical, Code</td>
+            <td>&lt; 1 hour</td>
+            <td>&lt; 30 minutes</td>
+            <td>ED, ICU, Trauma bay</td>
+          </tr>
+          <tr>
+            <td><span style="background:#fff3cd;color:#856404;font-weight:700;padding:2px 8px;border-radius:4px;">Urgent</span></td>
+            <td>P2, ASAP, Expedited</td>
+            <td>2 – 4 hours</td>
+            <td>1 – 2 hours</td>
+            <td>Inpatient floors, urgent care</td>
+          </tr>
+          <tr>
+            <td><span style="background:#d1ecf1;color:#0c5460;font-weight:700;padding:2px 8px;border-radius:4px;">Routine</span></td>
+            <td>P3, Standard</td>
+            <td>Same day – 3 days</td>
+            <td>24 hours</td>
+            <td>Outpatient clinic orders</td>
+          </tr>
+          <tr>
+            <td><span style="background:#e2e8f0;color:#3d4a5c;font-weight:700;padding:2px 8px;border-radius:4px;">Elective / Scheduled</span></td>
+            <td>P4, Screening</td>
+            <td>Days – weeks</td>
+            <td>24 – 48 hours</td>
+            <td>Screening programs, annual follow-up</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>STAT / Emergent (P1)</h3>
+      <p>
+        A <strong>STAT</strong> order is initiated when there is immediate threat to life or limb.
+        The RIS flags the order in red and pages the on-call technologist immediately.
+        Common STAT indications include suspected aortic dissection (CT Angio), acute stroke (CT/MRI brain),
+        pulmonary embolism (CT PE protocol), tension pneumothorax (CXR), and intracranial hemorrhage.
+        The radiologist issues a <em>preliminary verbal or electronic report</em> within 30 minutes,
+        followed by a finalized dictation.
+      </p>
+      <table class="gloss-table">
+        <thead><tr><th>Indication</th><th>Modality</th><th>Protocol</th><th>Critical Finding Action</th></tr></thead>
+        <tbody>
+          <tr><td>Stroke — Ischemic</td><td>CT, MRI</td><td>CT Brain non-con + CT Angio head/neck</td><td>Immediate neuro consult; tPA window</td></tr>
+          <tr><td>Aortic Dissection</td><td>CT</td><td>CTA Chest-Abdomen-Pelvis with contrast</td><td>Cardiothoracic surgery alert</td></tr>
+          <tr><td>Pulmonary Embolism</td><td>CT</td><td>CT PE Protocol (CTPA)</td><td>Anticoagulation or IR intervention</td></tr>
+          <tr><td>Acute Abdomen / Free Air</td><td>CT, XR</td><td>CT Abd/Pelvis with contrast; upright CXR</td><td>Surgical team notification</td></tr>
+          <tr><td>Intracranial Hemorrhage</td><td>CT</td><td>CT Brain non-con</td><td>Neurosurgery on-call alert</td></tr>
+          <tr><td>Testicular Torsion</td><td>US</td><td>Scrotal Doppler Ultrasound</td><td>Urology; surgical prep within minutes</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Urgent (P2)</h3>
+      <p>
+        Urgent orders are placed when the clinical condition is serious but not immediately life-threatening.
+        The patient may be stable but requires imaging within hours to guide treatment decisions.
+        Examples include suspected appendicitis, new neurological deficits in a stable patient,
+        deep vein thrombosis (DVT), and infected joints.
+      </p>
+      <table class="gloss-table">
+        <thead><tr><th>Indication</th><th>Modality</th><th>Target TAT</th></tr></thead>
+        <tbody>
+          <tr><td>Suspected Appendicitis</td><td>CT Abd/Pelvis or US</td><td>2 hours</td></tr>
+          <tr><td>DVT Evaluation</td><td>Venous Doppler US</td><td>2 – 4 hours</td></tr>
+          <tr><td>New Focal Neurological Deficit</td><td>MRI Brain with/without contrast</td><td>2 – 4 hours</td></tr>
+          <tr><td>Biliary Obstruction / Cholangitis</td><td>US Abdomen or MRCP</td><td>2 – 4 hours</td></tr>
+          <tr><td>Suspected Fracture (non-displaced)</td><td>X-Ray / CT</td><td>2 – 3 hours</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Routine (P3)</h3>
+      <p>
+        Routine orders cover the majority of outpatient imaging volume — stable patients referred by
+        a primary care physician or specialist for diagnostic workup. Scheduling occurs within 1–3 business days.
+        Examples include breast lump evaluation, lung nodule follow-up, abdominal pain workup,
+        and prostate cancer staging.
+      </p>
+
+      <h3>Elective / Screening (P4)</h3>
+      <p>
+        Elective orders include population-level screening programs with no acute symptoms:
+        annual mammography, low-dose CT lung screening (LDCT) for smokers, DEXA bone density scans,
+        and whole-body MRI in high-risk individuals. These may be scheduled weeks out
+        and do not require expedited reporting.
+      </p>
+      <table class="gloss-table">
+        <thead><tr><th>Screening Program</th><th>Modality</th><th>Target Population</th><th>Frequency</th></tr></thead>
+        <tbody>
+          <tr><td>Mammography</td><td>Digital Mammogram / 3D Tomo</td><td>Women ≥ 40</td><td>Annual</td></tr>
+          <tr><td>Lung Cancer Screening (LDCT)</td><td>Low-Dose CT Chest</td><td>Age 50–80, 20 pack-yr smoker</td><td>Annual</td></tr>
+          <tr><td>Colorectal (CTC)</td><td>CT Colonography</td><td>Average-risk adults ≥ 45</td><td>Every 5 years</td></tr>
+          <tr><td>Bone Density</td><td>DEXA Scan</td><td>Women ≥ 65, men ≥ 70</td><td>Every 1–2 years</td></tr>
+          <tr><td>Abdominal Aortic Aneurysm</td><td>Abdominal Ultrasound</td><td>Men 65–75, ever-smokers</td><td>One-time</td></tr>
+        </tbody>
+      </table>
+
+      <h3>RIS Priority Codes &amp; Workflow Impact</h3>
+      <p>
+        When a physician enters an order in the EHR, the priority is transmitted via an
+        <strong>HL7 ORM message</strong> to the RIS. The RIS maps the priority to an internal code
+        and configures scheduling rules accordingly.
+      </p>
+      <table class="gloss-table">
+        <thead>
+          <tr>
+            <th>RIS Priority Code</th>
+            <th>HL7 ORM Field (OBR-27)</th>
+            <th>Scheduling Rule</th>
+            <th>Reporting SLA</th>
+            <th>Alert Mechanism</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><code>STAT</code></td><td>S (Stat)</td><td>Immediate assignment; bypass queue</td><td>≤ 30 min preliminary</td><td>Pager + RIS red flag + Epic BestPractice Alert</td></tr>
+          <tr><td><code>URGENT</code></td><td>A (ASAP)</td><td>Next available slot ≤ 4 hrs</td><td>≤ 2 hrs final</td><td>RIS yellow flag; charge nurse notification</td></tr>
+          <tr><td><code>ROUTINE</code></td><td>R (Routine)</td><td>First available within 3 days</td><td>24 hrs final</td><td>Standard worklist</td></tr>
+          <tr><td><code>ELECTIVE</code></td><td>E (Elective)</td><td>Patient-scheduled; no SLA</td><td>48 hrs final</td><td>None</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Critical Result Reporting</h3>
+      <p>
+        Regardless of original priority, any exam revealing a <strong>critical finding</strong>
+        (e.g., pneumothorax, new intracranial mass, aortic aneurysm ≥ 5.5 cm) triggers a mandatory
+        <em>critical result communication</em> workflow:
+      </p>
+      <ol style="margin:0.75rem 0 0.75rem 1.5rem; line-height:2;">
+        <li>Radiologist dictates preliminary report and calls the ordering provider directly.</li>
+        <li>Communication is documented in the RIS with timestamp, recipient name, and callback number.</li>
+        <li>If ordering provider is unreachable within 30 minutes, escalation to charge nurse or department head is mandatory.</li>
+        <li>Final report in PACS/RIS includes a <strong>Critical Result Flag</strong> (CRF) tag for audit trail.</li>
+        <li>Quality/compliance team reviews all CRF events monthly for ACR and Joint Commission accreditation.</li>
+      </ol>
+    </div>
+
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>RadiologyInfo Reference Guide</strong> — A patient-facing educational resource on medical imaging and radiology.</p>
+  <p>Content covers modalities, professional credentials, center services, and clinical referral indications.</p>
+  <p class="disclaimer">
+    This page is for informational and educational purposes only. It does not constitute medical advice, diagnosis, or treatment.
+    Always consult a qualified, licensed healthcare provider for clinical decisions. &copy; 2026 RadiologyInfo.
+  </p>
+</footer>
+
+</body>
+</html>
